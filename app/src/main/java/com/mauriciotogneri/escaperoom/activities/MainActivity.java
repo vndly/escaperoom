@@ -17,7 +17,8 @@ public class MainActivity extends BaseActivity
         {
             Intent intent = new Intent(getApplicationContext(), GameActivity.class);
             startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
-        findViewById(R.id.button_exit).setOnClickListener(view ->finish());
+        findViewById(R.id.button_exit).setOnClickListener(view -> finish());
     }
 }
