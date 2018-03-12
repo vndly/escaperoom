@@ -12,6 +12,6 @@ public class GameActivity extends BaseActivity
 
         setContentView(R.layout.screen_game);
 
-        findViewById(R.id.button_back).setOnClickListener(view -> finish());
+        findViewById(R.id.button_menu).setOnClickListener(view -> finish());
     }
 }
