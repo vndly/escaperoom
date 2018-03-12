@@ -4,5 +4,6 @@
     <string name="app.name">Escape Room</string>
 
     <string name="main.start">Start</string>
+    <string name="main.exit">Exit</string>
 
 </resources>

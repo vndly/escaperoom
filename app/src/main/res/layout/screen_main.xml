@@ -10,11 +10,25 @@
 
     <TextView
         android:id="@+id/button.start"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_background"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/selector_button_background"
+        android:gravity="center"
         android:padding="20dp"
         android:text="@string/main.start"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/button.exit"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_button_background"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="@string/main.exit"
         android:textAllCaps="true"
         android:textColor="@android:color/white"
         android:textSize="20sp"/>

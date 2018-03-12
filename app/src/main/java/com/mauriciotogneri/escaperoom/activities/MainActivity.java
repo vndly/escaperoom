@@ -18,5 +18,6 @@ public class MainActivity extends BaseActivity
             Intent intent = new Intent(getApplicationContext(), GameActivity.class);
             startActivity(intent);
         });
+        findViewById(R.id.button_exit).setOnClickListener(view ->finish());
     }
 }
