@@ -7,7 +7,7 @@ public class FirstScene extends BaseFragment
     @Override
     protected void initialize()
     {
-        view.findViewById(R.id.open_second).setOnClickListener(view1 -> openSecondScene());
+        registerClick(14, 48, this::openSecondScene);
     }
 
     @Override
