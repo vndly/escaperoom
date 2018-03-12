@@ -11,5 +11,7 @@ public class GameActivity extends BaseActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.screen_game);
+
+        findViewById(R.id.button_back).setOnClickListener(view -> finish());
     }
 }
