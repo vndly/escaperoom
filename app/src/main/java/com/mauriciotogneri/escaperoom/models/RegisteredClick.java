@@ -1,7 +1,5 @@
 package com.mauriciotogneri.escaperoom.models;
 
-import android.util.Log;
-
 public class RegisteredClick
 {
     private final int x;
@@ -20,8 +18,6 @@ public class RegisteredClick
     public boolean isValid(int x, int y)
     {
         int distance = (int) Math.sqrt(Math.pow(this.x - x, 2) + Math.pow(this.y - y, 2));
-
-        Log.d("DISTANCE", distance + "");
 
         return distance <= MAX_DISTANCE;
     }
