@@ -2,6 +2,7 @@ package com.mauriciotogneri.escaperoom.widget;
 
 import android.content.Context;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
@@ -27,13 +28,7 @@ public class InteractiveObject extends AppCompatImageView
         super(context, attrs, defStyleAttr);
     }
 
-    public void init(@DrawableRes int resId, OnClick onClick)
-    {
-        setImageResource(resId);
-        setOnClickListener(view -> onClick.onClick());
-    }
-
-    public void init(OnClick onClick)
+    public void callback(OnClick onClick)
     {
         setOnClickListener(view -> onClick.onClick());
     }
@@ -51,9 +46,17 @@ public class InteractiveObject extends AppCompatImageView
         canvas.addView(this);
     }
 
-    public static InteractiveObject create(Context context, int resId)
+    public static InteractiveObject fromWidget(Context context, @LayoutRes int resId)
     {
         return (InteractiveObject) LayoutInflater.from(context).inflate(resId, null);
+    }
+
+    public static InteractiveObject fromResource(Context context, @DrawableRes int resId)
+    {
+        InteractiveObject object = new InteractiveObject(context);
+        object.setImageResource(resId);
+
+        return object;
     }
 
     public interface OnClick

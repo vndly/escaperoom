@@ -9,7 +9,7 @@ public class Scene2 extends BaseFragment
     @Override
     protected void initialize()
     {
-        addObject(InteractiveObject.create(getContext(), R.layout.widget_button), 2, 5, this::openFirstScene);
+        addObject(InteractiveObject.fromWidget(getContext(), R.layout.widget_button), 2, 5, this::openFirstScene);
 
         view.findViewById(R.id.button_1).setOnClickListener(view1 -> onButtonClick(1));
         view.findViewById(R.id.button_2).setOnClickListener(view1 -> onButtonClick(2));
