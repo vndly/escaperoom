@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
 import com.mauriciotogneri.escaperoom.R;
-import com.mauriciotogneri.escaperoom.scenes.FirstScene;
-import com.mauriciotogneri.escaperoom.scenes.SecondScene;
+import com.mauriciotogneri.escaperoom.scenes.Scene1;
+import com.mauriciotogneri.escaperoom.scenes.Scene2;
 
 public class GameActivity extends BaseActivity
 {
@@ -31,12 +31,12 @@ public class GameActivity extends BaseActivity
 
     public void openFirstScene()
     {
-        openScene(new FirstScene());
+        openScene(new Scene1());
     }
 
     public void openSecondScene()
     {
-        openScene(new SecondScene());
+        openScene(new Scene2());
     }
 
     private void openScene(Fragment fragment)

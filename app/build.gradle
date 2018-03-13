@@ -43,6 +43,11 @@ android
 
     sourceSets
     {
+        // mipmap
+        main.res.srcDirs += 'src/main/res-mipmap'
+        main.res.srcDirs += 'src/main/res-drawables/icons'
+        main.res.srcDirs += 'src/main/res-drawables/selectors'
+
         // scene 1
         main.res.srcDirs += 'src/main/res-scenes/scene1/icons'
         main.res.srcDirs += 'src/main/res-scenes/scene1/images'

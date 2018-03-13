@@ -2,7 +2,7 @@ package com.mauriciotogneri.escaperoom.scenes;
 
 import com.mauriciotogneri.escaperoom.R;
 
-public class FirstScene extends BaseFragment
+public class Scene1 extends BaseFragment
 {
     @Override
     protected void initialize()
