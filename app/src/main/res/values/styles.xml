@@ -23,7 +23,7 @@
     <style name="scene.2.button" parent="base">
         <item name="android:layout_width">70dp</item>
         <item name="android:layout_height">70dp</item>
-        <item name="android:background">@drawable/selector_button_background</item>
+        <item name="android:background">@drawable/selector_scene2_button</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">50sp</item>
