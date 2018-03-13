@@ -3,7 +3,7 @@ package com.mauriciotogneri.escaperoom.scenes;
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.audio.AudioManager;
 import com.mauriciotogneri.escaperoom.widget.InteractiveImage;
-import com.mauriciotogneri.escaperoom.widget.InteractiveTextView;
+import com.mauriciotogneri.escaperoom.widget.InteractiveImageText;
 
 public class Scene2 extends BaseFragment
 {
@@ -12,19 +12,32 @@ public class Scene2 extends BaseFragment
     {
         addObject(InteractiveImage.fromWidget(getContext(), R.layout.widget_button_back), 2, 5, this::openFirstScene);
 
-        InteractiveTextView b1 = InteractiveTextView.fromWidget(getContext(), R.layout.widget_button_pad);
-        b1.setText("1");
-        addObject(b1, 35, 25, () -> onButtonClick(1));
+        InteractiveImageText b1 = InteractiveImageText.fromWidget(getContext(), R.layout.widget_button_pad, "1");
+        addObject(b1, 31, 20, () -> onButtonClick(1));
 
-        /*view.findViewById(R.id.button_1).setOnClickListener(view1 -> onButtonClick(1));
-        view.findViewById(R.id.button_2).setOnClickListener(view1 -> onButtonClick(2));
-        view.findViewById(R.id.button_3).setOnClickListener(view1 -> onButtonClick(3));
-        view.findViewById(R.id.button_4).setOnClickListener(view1 -> onButtonClick(4));
-        view.findViewById(R.id.button_5).setOnClickListener(view1 -> onButtonClick(5));
-        view.findViewById(R.id.button_6).setOnClickListener(view1 -> onButtonClick(6));
-        view.findViewById(R.id.button_7).setOnClickListener(view1 -> onButtonClick(7));
-        view.findViewById(R.id.button_8).setOnClickListener(view1 -> onButtonClick(8));
-        view.findViewById(R.id.button_9).setOnClickListener(view1 -> onButtonClick(9));*/
+        InteractiveImageText b2 = InteractiveImageText.fromWidget(getContext(), R.layout.widget_button_pad, "2");
+        addObject(b2, 44, 20, () -> onButtonClick(2));
+
+        InteractiveImageText b3 = InteractiveImageText.fromWidget(getContext(), R.layout.widget_button_pad, "3");
+        addObject(b3, 57, 20, () -> onButtonClick(3));
+
+        InteractiveImageText b4 = InteractiveImageText.fromWidget(getContext(), R.layout.widget_button_pad, "4");
+        addObject(b4, 31, 43, () -> onButtonClick(4));
+
+        InteractiveImageText b5 = InteractiveImageText.fromWidget(getContext(), R.layout.widget_button_pad, "5");
+        addObject(b5, 44, 43, () -> onButtonClick(5));
+
+        InteractiveImageText b6 = InteractiveImageText.fromWidget(getContext(), R.layout.widget_button_pad, "6");
+        addObject(b6, 57, 43, () -> onButtonClick(6));
+
+        InteractiveImageText b7 = InteractiveImageText.fromWidget(getContext(), R.layout.widget_button_pad, "7");
+        addObject(b7, 31, 66, () -> onButtonClick(7));
+
+        InteractiveImageText b8 = InteractiveImageText.fromWidget(getContext(), R.layout.widget_button_pad, "8");
+        addObject(b8, 44, 66, () -> onButtonClick(8));
+
+        InteractiveImageText b9 = InteractiveImageText.fromWidget(getContext(), R.layout.widget_button_pad, "9");
+        addObject(b9, 57, 66, () -> onButtonClick(9));
     }
 
     private void onButtonClick(int id)

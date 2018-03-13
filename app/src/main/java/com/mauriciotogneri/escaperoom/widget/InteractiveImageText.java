@@ -3,28 +3,37 @@ package com.mauriciotogneri.escaperoom.widget;
 import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-public class InteractiveTextView extends AppCompatTextView implements InteractiveObject
+import com.mauriciotogneri.escaperoom.R;
+
+public class InteractiveImageText extends RelativeLayout implements InteractiveObject
 {
     private static final int PADDING = 50;
 
-    public InteractiveTextView(Context context)
+    public InteractiveImageText(Context context)
     {
         super(context);
     }
 
-    public InteractiveTextView(Context context, @Nullable AttributeSet attrs)
+    public InteractiveImageText(Context context, @Nullable AttributeSet attrs)
     {
         super(context, attrs);
     }
 
-    public InteractiveTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr)
+    public InteractiveImageText(Context context, @Nullable AttributeSet attrs, int defStyleAttr)
     {
         super(context, attrs, defStyleAttr);
+    }
+
+    public void text(String text)
+    {
+        TextView textView = findViewById(R.id.text);
+        textView.setText(text);
     }
 
     @Override
@@ -47,8 +56,11 @@ public class InteractiveTextView extends AppCompatTextView implements Interactiv
         canvas.addView(this);
     }
 
-    public static InteractiveTextView fromWidget(Context context, @LayoutRes int resId)
+    public static InteractiveImageText fromWidget(Context context, @LayoutRes int resId, String text)
     {
-        return (InteractiveTextView) LayoutInflater.from(context).inflate(resId, null);
+        InteractiveImageText object = (InteractiveImageText) LayoutInflater.from(context).inflate(resId, null);
+        object.text(text);
+
+        return object;
     }
 }
