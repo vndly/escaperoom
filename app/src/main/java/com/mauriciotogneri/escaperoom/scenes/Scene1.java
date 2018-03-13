@@ -1,13 +1,16 @@
 package com.mauriciotogneri.escaperoom.scenes;
 
 import com.mauriciotogneri.escaperoom.R;
+import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
 
 public class Scene1 extends BaseFragment
 {
     @Override
     protected void initialize()
     {
-        registerClick(14, 48, this::openSecondScene);
+        InteractiveObject pad = new InteractiveObject(getContext());
+        pad.init(R.drawable.ic_scene2_pad, this::openSecondScene);
+        add(pad, 13, 48);
     }
 
     @Override

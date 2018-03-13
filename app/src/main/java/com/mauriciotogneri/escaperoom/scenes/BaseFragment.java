@@ -7,10 +7,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 
+import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.activities.GameActivity;
 import com.mauriciotogneri.escaperoom.models.RegisteredClick;
 import com.mauriciotogneri.escaperoom.models.RegisteredClick.OnRegionClick;
+import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,7 @@ import java.util.List;
 public abstract class BaseFragment extends Fragment implements OnTouchListener
 {
     protected View view;
+    private ViewGroup canvas;
     private final List<RegisteredClick> registeredClicks = new ArrayList<>();
 
     @Override
@@ -25,6 +29,8 @@ public abstract class BaseFragment extends Fragment implements OnTouchListener
     {
         view = inflater.inflate(layout(), viewGroup, false);
         view.setOnTouchListener(this);
+
+        canvas = view.findViewById(R.id.canvas);
 
         return view;
     }
@@ -34,7 +40,15 @@ public abstract class BaseFragment extends Fragment implements OnTouchListener
     {
         super.onActivityCreated(savedInstanceState);
 
-        initialize();
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener()
+        {
+            @Override
+            public void onGlobalLayout()
+            {
+                initialize();
+                view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
     }
 
     protected void openFirstScene()
@@ -57,6 +71,17 @@ public abstract class BaseFragment extends Fragment implements OnTouchListener
     }
 
     protected abstract int layout();
+
+    protected void add(InteractiveObject object, float x, float y)
+    {
+        float width = canvas.getWidth();
+        float height = canvas.getHeight();
+
+        object.setX(width * (x / 100f));
+        object.setY(height * (y / 100f));
+
+        canvas.addView(object);
+    }
 
     protected void registerClick(int x, int y, OnRegionClick onRegionClick)
     {
