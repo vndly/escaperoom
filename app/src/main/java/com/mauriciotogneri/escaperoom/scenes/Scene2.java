@@ -9,9 +9,10 @@ public class Scene2 extends BaseFragment
     @Override
     protected void initialize()
     {
-        addObject(InteractiveObject.fromWidget(getContext(), R.layout.widget_button), 2, 5, this::openFirstScene);
+        addObject(InteractiveObject.fromWidget(getContext(), R.layout.widget_button_back), 2, 5, this::openFirstScene);
 
-        view.findViewById(R.id.button_1).setOnClickListener(view1 -> onButtonClick(1));
+        addObject(InteractiveObject.fromWidget(getContext(), R.layout.widget_button_pad), 50, 50, () -> onButtonClick(1));
+        /*view.findViewById(R.id.button_1).setOnClickListener(view1 -> onButtonClick(1));
         view.findViewById(R.id.button_2).setOnClickListener(view1 -> onButtonClick(2));
         view.findViewById(R.id.button_3).setOnClickListener(view1 -> onButtonClick(3));
         view.findViewById(R.id.button_4).setOnClickListener(view1 -> onButtonClick(4));
@@ -19,7 +20,7 @@ public class Scene2 extends BaseFragment
         view.findViewById(R.id.button_6).setOnClickListener(view1 -> onButtonClick(6));
         view.findViewById(R.id.button_7).setOnClickListener(view1 -> onButtonClick(7));
         view.findViewById(R.id.button_8).setOnClickListener(view1 -> onButtonClick(8));
-        view.findViewById(R.id.button_9).setOnClickListener(view1 -> onButtonClick(9));
+        view.findViewById(R.id.button_9).setOnClickListener(view1 -> onButtonClick(9));*/
     }
 
     private void onButtonClick(int id)
