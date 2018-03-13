@@ -52,6 +52,9 @@ android
         // selectors
         main.res.srcDirs += 'src/main/res-drawables/selectors'
 
+        // selectors
+        main.res.srcDirs += 'src/main/res-drawables/widgets'
+
         // scene 1
         main.res.srcDirs += 'src/main/res-scenes/scene1/icons'
         main.res.srcDirs += 'src/main/res-scenes/scene1/images'

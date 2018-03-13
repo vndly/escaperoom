@@ -80,6 +80,12 @@ public abstract class BaseFragment extends Fragment implements OnTouchListener
         pad.addTo(canvas, x, y);
     }
 
+    protected void addObject(InteractiveObject object, int x, int y, InteractiveObject.OnClick onClick)
+    {
+        object.init(onClick);
+        object.addTo(canvas, x, y);
+    }
+
     protected void registerClick(int x, int y, OnRegionClick onRegionClick)
     {
         registeredClicks.add(new RegisteredClick(x, y, onRegionClick));

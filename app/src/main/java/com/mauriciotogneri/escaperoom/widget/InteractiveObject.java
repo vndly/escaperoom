@@ -5,6 +5,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 public class InteractiveObject extends AppCompatImageView
@@ -32,6 +33,11 @@ public class InteractiveObject extends AppCompatImageView
         setOnClickListener(view -> onClick.onClick());
     }
 
+    public void init(OnClick onClick)
+    {
+        setOnClickListener(view -> onClick.onClick());
+    }
+
     public void addTo(ViewGroup canvas, float x, float y)
     {
         setPadding(PADDING, PADDING, PADDING, PADDING);
@@ -43,6 +49,11 @@ public class InteractiveObject extends AppCompatImageView
         setY(height * (y / 100f) - PADDING);
 
         canvas.addView(this);
+    }
+
+    public static InteractiveObject create(Context context, int resId)
+    {
+        return (InteractiveObject) LayoutInflater.from(context).inflate(resId, null);
     }
 
     public interface OnClick
