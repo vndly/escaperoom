@@ -1,6 +1,7 @@
 package com.mauriciotogneri.escaperoom.scenes;
 
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -72,15 +73,11 @@ public abstract class BaseFragment extends Fragment implements OnTouchListener
 
     protected abstract int layout();
 
-    protected void add(InteractiveObject object, float x, float y)
+    protected void addObject(@DrawableRes int resId, int x, int y, InteractiveObject.OnClick onClick)
     {
-        float width = canvas.getWidth();
-        float height = canvas.getHeight();
-
-        object.setX(width * (x / 100f));
-        object.setY(height * (y / 100f));
-
-        canvas.addView(object);
+        InteractiveObject pad = new InteractiveObject(getContext());
+        pad.init(resId, onClick);
+        pad.addTo(canvas, x, y);
     }
 
     protected void registerClick(int x, int y, OnRegionClick onRegionClick)
