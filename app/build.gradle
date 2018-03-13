@@ -8,6 +8,7 @@ android
     dexOptions
     {
         javaMaxHeapSize '2g'
+        preDexLibraries true
     }
 
     defaultConfig
@@ -38,6 +39,19 @@ android
     {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets
+    {
+        // scene 1
+        main.res.srcDirs += 'src/main/res-scenes/scene1/icons'
+        main.res.srcDirs += 'src/main/res-scenes/scene1/images'
+        main.res.srcDirs += 'src/main/res-scenes/scene1/layouts'
+
+        // scene 2
+        main.res.srcDirs += 'src/main/res-scenes/scene2/icons'
+        main.res.srcDirs += 'src/main/res-scenes/scene2/images'
+        main.res.srcDirs += 'src/main/res-scenes/scene2/layouts'
     }
 }
 

@@ -23,6 +23,6 @@ public class SecondScene extends BaseFragment
     @Override
     protected int layout()
     {
-        return R.layout.scene_second;
+        return R.layout.screen_scene2;
     }
 }

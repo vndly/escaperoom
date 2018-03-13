@@ -13,6 +13,6 @@ public class FirstScene extends BaseFragment
     @Override
     protected int layout()
     {
-        return R.layout.scene_first;
+        return R.layout.screen_scene1;
     }
 }
