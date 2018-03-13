@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.mauriciotogneri.escaperoom.widget.InteractiveObject
+<com.mauriciotogneri.escaperoom.widget.InteractiveTextView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/selector_scene2_button"/>
+    android:layout_width="70dp"
+    android:layout_height="70dp"
+    android:background="@drawable/selector_scene2_button"
+    android:gravity="center"
+    android:textColor="@android:color/black"
+    android:textSize="50sp"
+    android:textStyle="bold"/>
