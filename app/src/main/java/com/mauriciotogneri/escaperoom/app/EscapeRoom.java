@@ -3,6 +3,7 @@ package com.mauriciotogneri.escaperoom.app;
 import android.app.Application;
 
 import com.mauriciotogneri.escaperoom.audio.AudioManager;
+import com.mauriciotogneri.escaperoom.state.GameState;
 
 public class EscapeRoom extends Application
 {
@@ -12,5 +13,6 @@ public class EscapeRoom extends Application
         super.onCreate();
 
         AudioManager.initialize(this);
+        GameState.initialize(this);
     }
 }

@@ -14,12 +14,14 @@ import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.activities.GameActivity;
 import com.mauriciotogneri.escaperoom.models.RegisteredClick;
 import com.mauriciotogneri.escaperoom.models.RegisteredClick.OnRegionClick;
+import com.mauriciotogneri.escaperoom.state.GameState;
+import com.mauriciotogneri.escaperoom.state.StateScene;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseFragment extends Fragment implements OnTouchListener
+public abstract class BaseFragment<T extends StateScene> extends Fragment implements OnTouchListener
 {
     protected View view;
     private ViewGroup canvas;
@@ -44,9 +46,10 @@ public abstract class BaseFragment extends Fragment implements OnTouchListener
         view.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener()
         {
             @Override
+            @SuppressWarnings("unchecked")
             public void onGlobalLayout()
             {
-                initialize();
+                initialize((T) GameState.getInstance().stateScene(id()));
                 view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
@@ -67,11 +70,13 @@ public abstract class BaseFragment extends Fragment implements OnTouchListener
         return (GameActivity) getActivity();
     }
 
-    protected void initialize()
+    protected void initialize(T stateScene)
     {
     }
 
     protected abstract int layout();
+
+    protected abstract int id();
 
     protected void addObject(InteractiveObject object, int x, int y, InteractiveObject.OnClick onClick)
     {

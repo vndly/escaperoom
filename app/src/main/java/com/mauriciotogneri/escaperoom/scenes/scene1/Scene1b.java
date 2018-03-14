@@ -3,12 +3,13 @@ package com.mauriciotogneri.escaperoom.scenes.scene1;
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.audio.AudioManager;
 import com.mauriciotogneri.escaperoom.scenes.BaseFragment;
+import com.mauriciotogneri.escaperoom.state.StateScene1;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
 
-public class Scene1b extends BaseFragment
+public class Scene1b extends BaseFragment<StateScene1>
 {
     @Override
-    protected void initialize()
+    protected void initialize(StateScene1 stateScene)
     {
         addObject(InteractiveObject.fromWidget(getContext(), R.layout.widget_button_back_left), 2, 5, this::openScene1a);
 
@@ -49,5 +50,11 @@ public class Scene1b extends BaseFragment
     protected int layout()
     {
         return R.layout.screen_scene1b;
+    }
+
+    @Override
+    protected int id()
+    {
+        return 1;
     }
 }
