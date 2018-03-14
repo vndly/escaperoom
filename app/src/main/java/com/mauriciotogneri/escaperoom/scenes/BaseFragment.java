@@ -101,6 +101,11 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         object.addTo(canvas, x, y);
     }
 
+    protected void addObject(InteractiveObject object, int x, int y)
+    {
+        object.addTo(canvas, x, y);
+    }
+
     protected void registerClick(int x, int y, int radius, OnRegionClick onRegionClick)
     {
         registeredClicks.add(new RoundRegisteredClick(x, y, radius, onRegionClick));

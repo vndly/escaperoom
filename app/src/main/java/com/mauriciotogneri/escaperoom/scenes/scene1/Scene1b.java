@@ -1,5 +1,7 @@
 package com.mauriciotogneri.escaperoom.scenes.scene1;
 
+import android.view.View;
+
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.scenes.BaseFragment;
 import com.mauriciotogneri.escaperoom.state.StateScene1;
@@ -7,6 +9,8 @@ import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
 
 public class Scene1b extends BaseFragment<StateScene1>
 {
+    private InteractiveObject dark;
+
     @Override
     protected void initialize(StateScene1 stateScene)
     {
@@ -38,11 +42,28 @@ public class Scene1b extends BaseFragment<StateScene1>
 
         InteractiveObject b9 = InteractiveObject.fromWidget(getContext(), R.layout.widget_scene1b_button_pad, "9");
         addObject(b9, 57, 66, () -> onButtonClick(9));
+
+        dark = InteractiveObject.fromWidget(getContext(), R.layout.widget_scene1_dark);
+        addObject(dark, 0, 0);
+
+        setup(stateScene);
     }
 
     private void onButtonClick(int id)
     {
         playSound("scene1/dial.ogg");
+    }
+
+    private void setup(StateScene1 stateScene)
+    {
+        if (stateScene.isLightOn())
+        {
+            dark.setVisibility(View.GONE);
+        }
+        else
+        {
+            dark.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
