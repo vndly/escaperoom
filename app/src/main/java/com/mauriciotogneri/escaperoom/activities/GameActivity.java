@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
 import com.mauriciotogneri.escaperoom.R;
-import com.mauriciotogneri.escaperoom.scenes.Scene1;
-import com.mauriciotogneri.escaperoom.scenes.Scene2;
+import com.mauriciotogneri.escaperoom.scenes.scene1.Scene1a;
+import com.mauriciotogneri.escaperoom.scenes.scene1.Scene1b;
 
 public class GameActivity extends BaseActivity
 {
@@ -26,17 +26,17 @@ public class GameActivity extends BaseActivity
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
-        openFirstScene();
+        openScene1a();
     }
 
-    public void openFirstScene()
+    public void openScene1a()
     {
-        openScene(new Scene1());
+        openScene(new Scene1a());
     }
 
-    public void openSecondScene()
+    public void openScene1b()
     {
-        openScene(new Scene2());
+        openScene(new Scene1b());
     }
 
     private void openScene(Fragment fragment)

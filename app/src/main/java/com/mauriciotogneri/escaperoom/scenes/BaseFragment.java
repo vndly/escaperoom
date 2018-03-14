@@ -52,14 +52,14 @@ public abstract class BaseFragment extends Fragment implements OnTouchListener
         });
     }
 
-    protected void openFirstScene()
+    protected void openScene1a()
     {
-        gameActivity().openFirstScene();
+        gameActivity().openScene1a();
     }
 
-    protected void openSecondScene()
+    protected void openScene1b()
     {
-        gameActivity().openSecondScene();
+        gameActivity().openScene1b();
     }
 
     private GameActivity gameActivity()
