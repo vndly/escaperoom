@@ -14,7 +14,7 @@ public class Scene2a extends BaseFragment<StateScene2>
     @Override
     protected int layout()
     {
-        return R.layout.screen_scene1a;
+        return R.layout.screen_scene2a;
     }
 
     @Override

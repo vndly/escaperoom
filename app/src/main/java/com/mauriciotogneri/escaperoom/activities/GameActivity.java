@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.scenes.scene1.Scene1a;
 import com.mauriciotogneri.escaperoom.scenes.scene1.Scene1b;
+import com.mauriciotogneri.escaperoom.scenes.scene2.Scene2a;
 
 public class GameActivity extends BaseActivity
 {
@@ -37,6 +38,11 @@ public class GameActivity extends BaseActivity
     public void openScene1b()
     {
         openScene(new Scene1b());
+    }
+
+    public void openScene2a()
+    {
+        openScene(new Scene2a());
     }
 
     private void openScene(Fragment fragment)

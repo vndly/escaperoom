@@ -20,7 +20,7 @@ public class Scene1a extends BaseFragment<StateScene1>
         dark = InteractiveObject.fromWidget(getContext(), R.layout.widget_scene1_dark);
         addObject(dark, 0, 0);
 
-        registerClick(18, 22, 36, 76, this::doorLocked);
+        registerClick(18, 22, 36, 76, this::openDoor);
 
         setup(stateScene);
     }
@@ -56,9 +56,16 @@ public class Scene1a extends BaseFragment<StateScene1>
         }
     }
 
-    private void doorLocked()
+    private void openDoor()
     {
-        playSound("scene1/door_locked.ogg");
+        if (stateScene.isDoorOpen())
+        {
+            openScene2a();
+        }
+        else
+        {
+            playSound("scene1/door_locked.ogg");
+        }
     }
 
     @Override
