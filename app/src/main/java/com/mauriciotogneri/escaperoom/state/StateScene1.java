@@ -2,15 +2,15 @@ package com.mauriciotogneri.escaperoom.state;
 
 public class StateScene1 implements StateScene
 {
-    private boolean lightOn = false;
+    private boolean lightOn = true;
 
     public boolean isLightOn()
     {
         return lightOn;
     }
 
-    public void lightOn(boolean value)
+    public void toggleLight()
     {
-        lightOn = value;
+        lightOn = !lightOn;
     }
 }

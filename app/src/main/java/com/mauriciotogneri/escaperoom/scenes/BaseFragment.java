@@ -1,6 +1,7 @@
 package com.mauriciotogneri.escaperoom.scenes;
 
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -28,6 +29,7 @@ import java.util.List;
 public abstract class BaseFragment<T extends StateScene> extends Fragment implements OnTouchListener
 {
     protected View view;
+    protected T stateScene;
     private ViewGroup canvas;
     private final List<RegisteredClick> registeredClicks = new ArrayList<>();
 
@@ -53,7 +55,8 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
             @SuppressWarnings("unchecked")
             public void onGlobalLayout()
             {
-                initialize((T) GameState.getInstance().stateScene(id()));
+                stateScene = (T) GameState.getInstance().stateScene(id());
+                initialize(stateScene);
                 view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
@@ -62,6 +65,11 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
     protected void playSound(String name)
     {
         AudioManager.getInstance().playSound(name);
+    }
+
+    protected void background(@DrawableRes int resId)
+    {
+        canvas.setBackgroundResource(resId);
     }
 
     protected void openScene1a()
