@@ -15,8 +15,6 @@ import com.mauriciotogneri.escaperoom.R;
 
 public class InteractiveObject extends RelativeLayout
 {
-    private static final int PADDING = 50;
-
     public InteractiveObject(Context context)
     {
         super(context);
@@ -51,13 +49,11 @@ public class InteractiveObject extends RelativeLayout
 
     public void addTo(ViewGroup canvas, float x, float y)
     {
-        setPadding(PADDING, PADDING, PADDING, PADDING);
-
         float width = canvas.getWidth();
         float height = canvas.getHeight();
 
-        setX(width * (x / 100f) - PADDING);
-        setY(height * (y / 100f) - PADDING);
+        setX(width * (x / 100f));
+        setY(height * (y / 100f));
 
         canvas.addView(this);
     }

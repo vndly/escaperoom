@@ -3,6 +3,7 @@ package com.mauriciotogneri.escaperoom.scenes;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,8 +13,11 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.activities.GameActivity;
-import com.mauriciotogneri.escaperoom.models.RegisteredClick;
-import com.mauriciotogneri.escaperoom.models.RegisteredClick.OnRegionClick;
+import com.mauriciotogneri.escaperoom.audio.AudioManager;
+import com.mauriciotogneri.escaperoom.interactions.RectRegisteredClick;
+import com.mauriciotogneri.escaperoom.interactions.RegisteredClick;
+import com.mauriciotogneri.escaperoom.interactions.RegisteredClick.OnRegionClick;
+import com.mauriciotogneri.escaperoom.interactions.RoundRegisteredClick;
 import com.mauriciotogneri.escaperoom.state.GameState;
 import com.mauriciotogneri.escaperoom.state.StateScene;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
@@ -55,6 +59,11 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         });
     }
 
+    protected void playSound(String name)
+    {
+        AudioManager.getInstance().playSound(name);
+    }
+
     protected void openScene1a()
     {
         gameActivity().openScene1a();
@@ -84,9 +93,14 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         object.addTo(canvas, x, y);
     }
 
-    protected void registerClick(int x, int y, OnRegionClick onRegionClick)
+    protected void registerClick(int x, int y, int radius, OnRegionClick onRegionClick)
     {
-        registeredClicks.add(new RegisteredClick(x, y, onRegionClick));
+        registeredClicks.add(new RoundRegisteredClick(x, y, radius, onRegionClick));
+    }
+
+    protected void registerClick(int x1, int y1, int x2, int y2, OnRegionClick onRegionClick)
+    {
+        registeredClicks.add(new RectRegisteredClick(x1, y1, x2, y2, onRegionClick));
     }
 
     @Override
@@ -100,6 +114,8 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
 
         int xPos = (int) (x * 100 / width);
         int yPos = (int) (y * 100 / height);
+
+        Log.d("onTouch", String.format("x: %s, y: %s", xPos, yPos));
 
         for (RegisteredClick registeredClick : registeredClicks)
         {

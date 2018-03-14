@@ -10,7 +10,20 @@ public class Scene1a extends BaseFragment<StateScene1>
     @Override
     protected void initialize(StateScene1 stateScene)
     {
-        addObject(InteractiveObject.fromResource(getContext(), R.drawable.ic_scene1b_pad), 13, 48, this::openScene1b);
+        addObject(InteractiveObject.fromResource(getContext(), R.drawable.ic_scene1a_pad), 12, 48, this::openScene1b);
+        addObject(InteractiveObject.fromResource(getContext(), R.drawable.ic_scene1a_switch), 90, 48, this::toggleLight);
+
+        registerClick(18, 22, 36, 76, this::doorLocked);
+    }
+
+    private void toggleLight()
+    {
+        playSound("scene1/switch.ogg");
+    }
+
+    private void doorLocked()
+    {
+        playSound("scene1/door_locked.ogg");
     }
 
     @Override

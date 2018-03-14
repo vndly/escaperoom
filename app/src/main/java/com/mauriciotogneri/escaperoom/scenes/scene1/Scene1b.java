@@ -1,7 +1,6 @@
 package com.mauriciotogneri.escaperoom.scenes.scene1;
 
 import com.mauriciotogneri.escaperoom.R;
-import com.mauriciotogneri.escaperoom.audio.AudioManager;
 import com.mauriciotogneri.escaperoom.scenes.BaseFragment;
 import com.mauriciotogneri.escaperoom.state.StateScene1;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
@@ -43,7 +42,7 @@ public class Scene1b extends BaseFragment<StateScene1>
 
     private void onButtonClick(int id)
     {
-        AudioManager.getInstance().playSound("scene1/dial.ogg");
+        playSound("scene1/dial.ogg");
     }
 
     @Override
