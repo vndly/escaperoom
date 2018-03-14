@@ -1,6 +1,7 @@
 package com.mauriciotogneri.escaperoom.scenes;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -25,7 +26,7 @@ public abstract class BaseFragment extends Fragment implements OnTouchListener
     private final List<RegisteredClick> registeredClicks = new ArrayList<>();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState)
     {
         view = inflater.inflate(layout(), viewGroup, false);
         view.setOnTouchListener(this);
