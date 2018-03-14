@@ -39,7 +39,15 @@ public class Scene1a extends BaseFragment<StateScene1>
         if (stateScene.isLightOn())
         {
             dark.setVisibility(View.GONE);
-            background(R.drawable.scene1a_background_on);
+
+            if (stateScene.isDoorOpen())
+            {
+                background(R.drawable.scene1a_background_door_open);
+            }
+            else
+            {
+                background(R.drawable.scene1a_background_on);
+            }
         }
         else
         {

@@ -10,6 +10,7 @@ import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
 public class Scene1b extends BaseFragment<StateScene1>
 {
     private InteractiveObject dark;
+    private final DigitsInput digitsInput = new DigitsInput();
 
     @Override
     protected void initialize(StateScene1 stateScene)
@@ -49,9 +50,19 @@ public class Scene1b extends BaseFragment<StateScene1>
         setup(stateScene);
     }
 
-    private void onButtonClick(int id)
+    private void onButtonClick(int digit)
     {
-        playSound("scene1/dial.ogg");
+        if (digitsInput.add(digit))
+        {
+            stateScene.openDoor();
+            stateScene.lightOn();
+
+            playSound("scene1/unlocked.ogg");
+        }
+        else
+        {
+            playSound("scene1/dial.ogg");
+        }
     }
 
     private void setup(StateScene1 stateScene)
@@ -76,5 +87,31 @@ public class Scene1b extends BaseFragment<StateScene1>
     protected int id()
     {
         return 1;
+    }
+
+    private static class DigitsInput
+    {
+        private final int[] input;
+        private int index = 0;
+
+        private DigitsInput()
+        {
+            this.input = new int[4];
+        }
+
+        public boolean add(int digit)
+        {
+            input[index++] = digit;
+
+            if (index >= input.length)
+            {
+                index = 0;
+            }
+
+            return ((input[0] == 6) && (input[1] == 3) && (input[2] == 5) && (input[3] == 7)) ||
+                    ((input[0] == 7) && (input[1] == 6) && (input[2] == 3) && (input[3] == 5)) ||
+                    ((input[0] == 5) && (input[1] == 7) && (input[2] == 6) && (input[3] == 3)) ||
+                    ((input[0] == 3) && (input[1] == 5) && (input[2] == 7) && (input[3] == 6));
+        }
     }
 }
