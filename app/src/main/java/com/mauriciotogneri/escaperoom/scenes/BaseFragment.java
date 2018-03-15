@@ -78,14 +78,19 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         {
             canvas.getLayoutParams().width = (int) (height * DEFAULT_RATIO);
             canvas.getLayoutParams().height = (int) height;
-            canvas.requestLayout();
         }
         else if (ratio < DEFAULT_RATIO)
         {
             canvas.getLayoutParams().width = (int) width;
             canvas.getLayoutParams().height = (int) (width / DEFAULT_RATIO);
-            canvas.requestLayout();
         }
+        else
+        {
+            canvas.getLayoutParams().width = (int) width;
+            canvas.getLayoutParams().height = (int) height;
+        }
+
+        canvas.requestLayout();
     }
 
     protected InteractiveObject objectLayout(@LayoutRes int resId)
@@ -138,7 +143,7 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
 
     protected void add(InteractiveObject object)
     {
-        object.addTo(canvas);
+        object.addTo(canvas, DEFAULT_RATIO);
     }
 
     protected void registerClick(int x, int y, int radius, OnRegionClick onRegionClick)

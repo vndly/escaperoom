@@ -17,6 +17,8 @@ public class InteractiveObject extends RelativeLayout
 {
     private float x;
     private float y;
+    private int width;
+    private int height;
 
     public InteractiveObject(Context context)
     {
@@ -51,20 +53,33 @@ public class InteractiveObject extends RelativeLayout
         this.y = y;
     }
 
+    public void size(int width, int height)
+    {
+        this.width = width;
+        this.height = height;
+    }
+
     public void callback(OnClick onClick)
     {
         setOnClickListener(view -> onClick.onClick());
     }
 
-    public void addTo(ViewGroup canvas)
+    public void addTo(ViewGroup canvas, double defaultRatio)
     {
-        float width = canvas.getWidth();
-        float height = canvas.getHeight();
+        double canvasWidth = canvas.getLayoutParams().width;
+        double canvasHeight = canvas.getLayoutParams().height;
+        double ratio = defaultRatio / (canvasWidth / canvasHeight);
 
-        setX(width * (x / 100f));
-        setY(height * (y / 100f));
+        int x = (int) (canvasWidth * (this.x / 100f));
+        int y = (int) (canvasHeight * (this.y / 100f));
 
-        canvas.addView(this);
+        int width = (this.width != 0) ? (int) (this.width * ratio) : (int) canvasWidth;
+        int height = (this.height != 0) ? (int) (this.height * ratio) : (int) canvasHeight;
+
+        LayoutParams layoutParams = new LayoutParams(width, height);
+        layoutParams.setMargins(x, y, 0, 0);
+
+        canvas.addView(this, layoutParams);
     }
 
     public static InteractiveObject fromLayout(Context context, @LayoutRes int resId)

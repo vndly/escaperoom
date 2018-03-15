@@ -18,11 +18,13 @@ public class Scene1a extends BaseFragment<StateScene1>
 
         InteractiveObject pad = objectDrawable(R.drawable.ic_scene1a_pad);
         pad.position(12, 48);
+        pad.size(100, 100);
         pad.callback(this::openScene1b);
         add(pad);
 
         InteractiveObject interrupter = objectDrawable(R.drawable.ic_scene1a_switch);
         interrupter.position(90, 48);
+        interrupter.size(50, 50);
         interrupter.callback(this::toggleLight);
         add(interrupter);
 
