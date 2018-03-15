@@ -15,10 +15,10 @@ import com.mauriciotogneri.escaperoom.R;
 
 public class InteractiveObject extends RelativeLayout
 {
-    private float x;
-    private float y;
-    private int width;
-    private int height;
+    private float x = 0;
+    private float y = 0;
+    private int width = 0;
+    private int height = 0;
 
     public InteractiveObject(Context context)
     {
