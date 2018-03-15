@@ -15,6 +15,9 @@ import com.mauriciotogneri.escaperoom.R;
 
 public class InteractiveObject extends RelativeLayout
 {
+    private float x;
+    private float y;
+
     public InteractiveObject(Context context)
     {
         super(context);
@@ -42,12 +45,18 @@ public class InteractiveObject extends RelativeLayout
         imageView.setImageResource(image);
     }
 
+    public void position(float x, float y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
     public void callback(OnClick onClick)
     {
         setOnClickListener(view -> onClick.onClick());
     }
 
-    public void addTo(ViewGroup canvas, float x, float y)
+    public void addTo(ViewGroup canvas)
     {
         float width = canvas.getWidth();
         float height = canvas.getHeight();
@@ -58,22 +67,14 @@ public class InteractiveObject extends RelativeLayout
         canvas.addView(this);
     }
 
-    public static InteractiveObject fromWidget(Context context, @LayoutRes int resId, String text)
-    {
-        InteractiveObject object = (InteractiveObject) LayoutInflater.from(context).inflate(resId, null);
-        object.text(text);
-
-        return object;
-    }
-
-    public static InteractiveObject fromWidget(Context context, @LayoutRes int resId)
+    public static InteractiveObject fromLayout(Context context, @LayoutRes int resId)
     {
         return (InteractiveObject) LayoutInflater.from(context).inflate(resId, null);
     }
 
     public static InteractiveObject fromResource(Context context, @DrawableRes int resId)
     {
-        InteractiveObject object = fromWidget(context, R.layout.widget_interactive_object);
+        InteractiveObject object = fromLayout(context, R.layout.widget_interactive_object);
         object.image(resId);
 
         return object;

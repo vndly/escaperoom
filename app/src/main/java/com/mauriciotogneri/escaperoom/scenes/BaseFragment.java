@@ -2,6 +2,7 @@ package com.mauriciotogneri.escaperoom.scenes;
 
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -87,6 +88,16 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         }
     }
 
+    protected InteractiveObject objectLayout(@LayoutRes int resId)
+    {
+        return InteractiveObject.fromLayout(getContext(), resId);
+    }
+
+    protected InteractiveObject objectDrawable(@DrawableRes int resId)
+    {
+        return InteractiveObject.fromResource(getContext(), resId);
+    }
+
     protected void playSound(String name)
     {
         AudioManager.getInstance().playSound(name);
@@ -125,15 +136,9 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
 
     protected abstract int id();
 
-    protected void addObject(InteractiveObject object, int x, int y, InteractiveObject.OnClick onClick)
+    protected void add(InteractiveObject object)
     {
-        object.callback(onClick);
-        object.addTo(canvas, x, y);
-    }
-
-    protected void addObject(InteractiveObject object, int x, int y)
-    {
-        object.addTo(canvas, x, y);
+        object.addTo(canvas);
     }
 
     protected void registerClick(int x, int y, int radius, OnRegionClick onRegionClick)

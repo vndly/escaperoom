@@ -17,18 +17,30 @@ public class Scene1b extends BaseFragment<StateScene1>
     {
         background(R.drawable.scene1b_background);
 
-        addObject(InteractiveObject.fromWidget(getContext(), R.layout.widget_button_back_left), 2, 4, this::openScene1a);
+        InteractiveObject back = objectLayout(R.layout.widget_button_back_left);
+        back.position(2, 4);
+        back.callback(this::openScene1a);
+        add(back);
 
-        InteractiveObject b1 = InteractiveObject.fromWidget(getContext(), R.layout.widget_scene1b_button_pad, "1");
-        addObject(b1, 31, 18, () -> onButtonClick(1));
+        InteractiveObject b1 = objectLayout(R.layout.widget_scene1b_button_pad);
+        b1.text("1");
+        b1.position(31, 18);
+        b1.callback(() -> onButtonClick(1));
+        add(b1);
 
-        InteractiveObject b2 = InteractiveObject.fromWidget(getContext(), R.layout.widget_scene1b_button_pad, "2");
-        addObject(b2, 44, 18, () -> onButtonClick(2));
+        InteractiveObject b2 = objectLayout(R.layout.widget_scene1b_button_pad);
+        b2.text("2");
+        b2.position(44, 18);
+        b2.callback(() -> onButtonClick(2));
+        add(b2);
 
-        InteractiveObject b3 = InteractiveObject.fromWidget(getContext(), R.layout.widget_scene1b_button_pad, "3");
-        addObject(b3, 57, 18, () -> onButtonClick(3));
+        InteractiveObject b3 = objectLayout(R.layout.widget_scene1b_button_pad);
+        b3.text("3");
+        b3.position(57, 18);
+        b3.callback(() -> onButtonClick(3));
+        add(b3);
 
-        InteractiveObject b4 = InteractiveObject.fromWidget(getContext(), R.layout.widget_scene1b_button_pad, "4");
+        /*InteractiveObject b4 = InteractiveObject.fromWidget(getContext(), R.layout.widget_scene1b_button_pad, "4");
         addObject(b4, 31, 39, () -> onButtonClick(4));
 
         InteractiveObject b5 = InteractiveObject.fromWidget(getContext(), R.layout.widget_scene1b_button_pad, "5");
@@ -44,10 +56,11 @@ public class Scene1b extends BaseFragment<StateScene1>
         addObject(b8, 44, 60, () -> onButtonClick(8));
 
         InteractiveObject b9 = InteractiveObject.fromWidget(getContext(), R.layout.widget_scene1b_button_pad, "9");
-        addObject(b9, 57, 60, () -> onButtonClick(9));
+        addObject(b9, 57, 60, () -> onButtonClick(9));*/
 
-        dark = InteractiveObject.fromWidget(getContext(), R.layout.widget_scene1_dark);
-        addObject(dark, 0, 0);
+        dark = objectLayout(R.layout.widget_scene1_dark);
+        dark.position(0, 0);
+        add(dark);
 
         setup(stateScene);
     }

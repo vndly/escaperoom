@@ -16,11 +16,19 @@ public class Scene1a extends BaseFragment<StateScene1>
     {
         background(R.drawable.scene1a_background_on);
 
-        addObject(InteractiveObject.fromResource(getContext(), R.drawable.ic_scene1a_pad), 12, 48, this::openScene1b);
-        addObject(InteractiveObject.fromResource(getContext(), R.drawable.ic_scene1a_switch), 90, 48, this::toggleLight);
+        InteractiveObject pad = objectDrawable(R.drawable.ic_scene1a_pad);
+        pad.position(12, 48);
+        pad.callback(this::openScene1b);
+        add(pad);
 
-        dark = InteractiveObject.fromWidget(getContext(), R.layout.widget_scene1_dark);
-        addObject(dark, 0, 0);
+        InteractiveObject interrupter = objectDrawable(R.drawable.ic_scene1a_switch);
+        interrupter.position(90, 48);
+        interrupter.callback(this::toggleLight);
+        add(interrupter);
+
+        dark = objectLayout(R.layout.widget_scene1_dark);
+        dark.position(0, 0);
+        add(dark);
 
         registerClick(18, 22, 36, 76, this::openDoor);
 
