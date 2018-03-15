@@ -14,6 +14,8 @@ public class Scene1a extends BaseFragment<StateScene1>
     @Override
     protected void initialize(StateScene1 stateScene)
     {
+        background(R.drawable.scene1a_background_on);
+
         addObject(InteractiveObject.fromResource(getContext(), R.drawable.ic_scene1a_pad), 12, 48, this::openScene1b);
         addObject(InteractiveObject.fromResource(getContext(), R.drawable.ic_scene1a_switch), 90, 48, this::toggleLight);
 
@@ -71,7 +73,7 @@ public class Scene1a extends BaseFragment<StateScene1>
     @Override
     protected int layout()
     {
-        return R.layout.screen_scene1a;
+        return R.layout.screen_scene;
     }
 
     @Override

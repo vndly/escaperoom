@@ -52,14 +52,12 @@ android
         // scene 1
         main.res.srcDirs += 'src/main/res-scenes/scene1/icons'
         main.res.srcDirs += 'src/main/res-scenes/scene1/images'
-        main.res.srcDirs += 'src/main/res-scenes/scene1/layouts'
         main.res.srcDirs += 'src/main/res-scenes/scene1/selectors'
         main.res.srcDirs += 'src/main/res-scenes/scene1/widgets'
 
         // scene 2
         main.res.srcDirs += 'src/main/res-scenes/scene2/icons'
         main.res.srcDirs += 'src/main/res-scenes/scene2/images'
-        main.res.srcDirs += 'src/main/res-scenes/scene2/layouts'
         main.res.srcDirs += 'src/main/res-scenes/scene2/selectors'
         main.res.srcDirs += 'src/main/res-scenes/scene2/widgets'
     }

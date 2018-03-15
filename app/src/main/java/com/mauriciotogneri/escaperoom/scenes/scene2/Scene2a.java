@@ -9,12 +9,13 @@ public class Scene2a extends BaseFragment<StateScene2>
     @Override
     protected void initialize(StateScene2 stateScene)
     {
+        background(R.drawable.scene2a_background);
     }
 
     @Override
     protected int layout()
     {
-        return R.layout.screen_scene2a;
+        return R.layout.screen_scene;
     }
 
     @Override
