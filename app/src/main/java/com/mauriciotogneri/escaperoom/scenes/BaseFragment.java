@@ -33,6 +33,8 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
     private ViewGroup canvas;
     private final List<RegisteredClick> registeredClicks = new ArrayList<>();
 
+    private static final double DEFAULT_RATIO = 1280d / 720d;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState)
     {
@@ -55,11 +57,34 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
             @SuppressWarnings("unchecked")
             public void onGlobalLayout()
             {
+                view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+                updateCanvas();
+
                 stateScene = (T) GameState.getInstance().stateScene(id());
                 initialize(stateScene);
-                view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
+    }
+
+    private void updateCanvas()
+    {
+        double width = canvas.getWidth();
+        double height = canvas.getHeight();
+        double ratio = width / height;
+
+        if (ratio > DEFAULT_RATIO)
+        {
+            canvas.getLayoutParams().width = (int) (height * DEFAULT_RATIO);
+            canvas.getLayoutParams().height = (int) height;
+            canvas.requestLayout();
+        }
+        else if (ratio < DEFAULT_RATIO)
+        {
+            canvas.getLayoutParams().width = (int) width;
+            canvas.getLayoutParams().height = (int) (width / DEFAULT_RATIO);
+            canvas.requestLayout();
+        }
     }
 
     protected void playSound(String name)
