@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.WindowManager;
 
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.scenes.scene1.Scene1a;
@@ -19,6 +20,8 @@ public class GameActivity extends BaseActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.screen_game);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         findViewById(R.id.button_menu).setOnClickListener(view ->
         {
