@@ -3,6 +3,7 @@ package com.mauriciotogneri.escaperoom.scenes.scene1;
 import android.view.View;
 
 import com.mauriciotogneri.escaperoom.R;
+import com.mauriciotogneri.escaperoom.audio.Sound;
 import com.mauriciotogneri.escaperoom.scenes.BaseFragment;
 import com.mauriciotogneri.escaperoom.state.StateScene1;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
@@ -58,11 +59,11 @@ public class Scene1b extends BaseFragment<StateScene1>
             stateScene.openDoor();
             stateScene.lightOn();
 
-            playSound("scene1/unlocked.ogg");
+            playSound(Sound.Scene1.UNLOCKED);
         }
         else
         {
-            playSound("scene1/dial.ogg");
+            playSound(Sound.Scene1.DIAL);
         }
     }
 

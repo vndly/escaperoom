@@ -3,6 +3,7 @@ package com.mauriciotogneri.escaperoom.scenes.scene1;
 import android.view.View;
 
 import com.mauriciotogneri.escaperoom.R;
+import com.mauriciotogneri.escaperoom.audio.Sound;
 import com.mauriciotogneri.escaperoom.scenes.BaseFragment;
 import com.mauriciotogneri.escaperoom.state.StateScene1;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
@@ -38,7 +39,7 @@ public class Scene1a extends BaseFragment<StateScene1>
 
     private void toggleLight()
     {
-        playSound("scene1/switch.ogg");
+        playSound(Sound.Scene1.SWITCH);
 
         stateScene.toggleLight();
 
@@ -75,7 +76,7 @@ public class Scene1a extends BaseFragment<StateScene1>
         }
         else
         {
-            playSound("scene1/door_locked.ogg");
+            playSound(Sound.Scene1.DOOR_LOCKED);
         }
     }
 
