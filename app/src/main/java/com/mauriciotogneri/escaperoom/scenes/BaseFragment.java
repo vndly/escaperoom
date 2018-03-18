@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.activities.GameActivity;
@@ -23,18 +22,18 @@ import com.mauriciotogneri.escaperoom.interactions.RoundRegisteredClick;
 import com.mauriciotogneri.escaperoom.state.GameState;
 import com.mauriciotogneri.escaperoom.state.StateScene;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
+import com.mauriciotogneri.escaperoom.widget.SceneLayout;
+import com.mauriciotogneri.escaperoom.widget.SceneLayout.OnInitialized;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseFragment<T extends StateScene> extends Fragment implements OnTouchListener
+public abstract class BaseFragment<T extends StateScene> extends Fragment implements OnTouchListener, OnInitialized
 {
     protected View view;
     protected T stateScene;
-    private ViewGroup canvas;
+    private SceneLayout canvas;
     private final List<RegisteredClick> registeredClicks = new ArrayList<>();
-
-    private static final double DEFAULT_RATIO = 1280d / 720d;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState)
@@ -43,54 +42,9 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         view.setOnTouchListener(this);
 
         canvas = view.findViewById(R.id.canvas);
+        canvas.onInitialized(this);
 
         return view;
-    }
-
-    @Override
-    public final void onActivityCreated(Bundle savedInstanceState)
-    {
-        super.onActivityCreated(savedInstanceState);
-
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener()
-        {
-            @Override
-            @SuppressWarnings("unchecked")
-            public void onGlobalLayout()
-            {
-                view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-
-                updateCanvas();
-
-                stateScene = (T) GameState.getInstance().stateScene(id());
-                initialize(stateScene);
-            }
-        });
-    }
-
-    private void updateCanvas()
-    {
-        double width = canvas.getWidth();
-        double height = canvas.getHeight();
-        double ratio = width / height;
-
-        if (ratio > DEFAULT_RATIO)
-        {
-            canvas.getLayoutParams().width = (int) (height * DEFAULT_RATIO);
-            canvas.getLayoutParams().height = (int) height;
-        }
-        else if (ratio < DEFAULT_RATIO)
-        {
-            canvas.getLayoutParams().width = (int) width;
-            canvas.getLayoutParams().height = (int) (width / DEFAULT_RATIO);
-        }
-        else
-        {
-            canvas.getLayoutParams().width = (int) width;
-            canvas.getLayoutParams().height = (int) height;
-        }
-
-        canvas.requestLayout();
     }
 
     protected InteractiveObject objectLayout(@LayoutRes int resId)
@@ -143,7 +97,7 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
 
     protected void add(InteractiveObject object)
     {
-        object.addTo(canvas, DEFAULT_RATIO);
+        object.addTo(canvas, SceneLayout.DEFAULT_RATIO);
     }
 
     protected void registerClick(int x, int y, int radius, OnRegionClick onRegionClick)
@@ -180,5 +134,13 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         }
 
         return true;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void onInitialized()
+    {
+        stateScene = (T) GameState.getInstance().stateScene(id());
+        initialize(stateScene);
     }
 }

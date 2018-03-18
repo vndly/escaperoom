@@ -66,8 +66,8 @@ public class InteractiveObject extends RelativeLayout
 
     public void addTo(ViewGroup canvas, double defaultRatio)
     {
-        double canvasWidth = canvas.getLayoutParams().width;
-        double canvasHeight = canvas.getLayoutParams().height;
+        double canvasWidth = canvas.getMeasuredWidth();
+        double canvasHeight = canvas.getMeasuredHeight();
         double ratio = defaultRatio / (canvasWidth / canvasHeight);
 
         int x = (int) (canvasWidth * (this.x / 100f));
