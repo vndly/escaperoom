@@ -11,28 +11,34 @@ import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
 public class Scene1a extends BaseFragment<StateScene1>
 {
     private InteractiveObject dark;
+    private InteractiveObject code;
 
     @Override
     protected void initialize(StateScene1 stateScene)
     {
-        background(R.drawable.scene1a_background_on);
+        background(R.drawable.scene1a);
 
-        InteractiveObject pad = objectDrawable(R.drawable.ic_scene1a_pad);
-        pad.position(12, 48);
+        InteractiveObject pad = objectDrawable(R.drawable.pad);
+        pad.position(10, 44);
         pad.size(100, 100);
         pad.callback(this::openScene1b);
         add(pad);
 
-        InteractiveObject interrupter = objectDrawable(R.drawable.ic_scene1a_switch);
-        interrupter.position(90, 48);
-        interrupter.size(50, 50);
+        InteractiveObject interrupter = objectDrawable(R.drawable.interrupter);
+        interrupter.position(35, 47);
+        interrupter.size(60, 60);
         interrupter.callback(this::toggleLight);
         add(interrupter);
+
+        code = objectDrawable(R.drawable.code);
+        code.position(52.5f, 18);
+        code.size(400, 200);
+        add(code);
 
         dark = objectLayout(R.layout.widget_scene1_dark);
         add(dark);
 
-        registerClick(18, 22, 36, 76, this::openDoor);
+        registerClick(16, 24, 31, 72, this::openDoor);
 
         setup(stateScene);
     }
@@ -50,6 +56,7 @@ public class Scene1a extends BaseFragment<StateScene1>
     {
         if (stateScene.isLightOn())
         {
+            code.setVisibility(View.GONE);
             dark.setVisibility(View.GONE);
 
             if (stateScene.isDoorOpen())
@@ -58,13 +65,13 @@ public class Scene1a extends BaseFragment<StateScene1>
             }
             else
             {
-                background(R.drawable.scene1a_background_on);
+                //
             }
         }
         else
         {
+            code.setVisibility(View.VISIBLE);
             dark.setVisibility(View.VISIBLE);
-            background(R.drawable.scene1a_background_off);
         }
     }
 
