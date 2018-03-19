@@ -25,10 +25,16 @@ public class Scene1c extends BaseFragment<StateScene1>
         add(back);
 
         chestClose = objectDrawable(R.drawable.scene1c_chest_drawers_close);
-        chestClose.position(10, 20);
-        chestClose.size(2000, 2000);
+        chestClose.position(28, 28);
+        chestClose.size(800, 300);
         chestClose.callback(this::openChest);
         add(chestClose);
+
+        chestOpen = objectDrawable(R.drawable.scene1c_chest_drawers_open);
+        chestOpen.position(18, 24);
+        chestOpen.size(1000, 600);
+        chestOpen.callback(this::openChest);
+        add(chestOpen);
 
         dark = objectLayout(R.layout.widget_scene1_dark);
         add(dark);
@@ -38,7 +44,8 @@ public class Scene1c extends BaseFragment<StateScene1>
 
     private void openChest()
     {
-
+        stateScene.openChest();
+        setup(stateScene);
     }
 
     private void setup(StateScene1 stateScene)
@@ -50,6 +57,17 @@ public class Scene1c extends BaseFragment<StateScene1>
         else
         {
             dark.setVisibility(View.VISIBLE);
+        }
+
+        if (stateScene.isChestOpen())
+        {
+            chestClose.setVisibility(View.GONE);
+            chestOpen.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            chestClose.setVisibility(View.VISIBLE);
+            chestOpen.setVisibility(View.GONE);
         }
     }
 
