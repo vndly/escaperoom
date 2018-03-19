@@ -10,5 +10,6 @@ public class Sound
         public static final String DOOR_LOCKED = BASE + "door_locked.ogg";
         public static final String SWITCH = BASE + "switch.ogg";
         public static final String UNLOCKED = BASE + "unlocked.ogg";
+        public static final String DRAWER = BASE + "drawer.ogg";
     }
 }

@@ -3,6 +3,7 @@ package com.mauriciotogneri.escaperoom.scenes.scene1;
 import android.view.View;
 
 import com.mauriciotogneri.escaperoom.R;
+import com.mauriciotogneri.escaperoom.audio.Sound.Scene1;
 import com.mauriciotogneri.escaperoom.scenes.BaseFragment;
 import com.mauriciotogneri.escaperoom.state.StateScene1;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
@@ -44,8 +45,12 @@ public class Scene1c extends BaseFragment<StateScene1>
 
     private void openChest()
     {
-        stateScene.openChest();
-        setup(stateScene);
+        if (!stateScene.isChestOpen())
+        {
+            playSound(Scene1.DRAWER);
+            stateScene.openChest();
+            setup(stateScene);
+        }
     }
 
     private void setup(StateScene1 stateScene)
