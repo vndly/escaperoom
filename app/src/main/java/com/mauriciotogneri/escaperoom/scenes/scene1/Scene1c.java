@@ -1,7 +1,5 @@
 package com.mauriciotogneri.escaperoom.scenes.scene1;
 
-import android.view.View;
-
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.audio.Sound.Scene1;
 import com.mauriciotogneri.escaperoom.scenes.BaseFragment;
@@ -13,6 +11,7 @@ public class Scene1c extends BaseFragment<StateScene1>
     private InteractiveObject dark;
     private InteractiveObject chestClose;
     private InteractiveObject chestOpen;
+    private InteractiveObject key;
 
     @Override
     protected void initialize(StateScene1 stateScene)
@@ -37,6 +36,12 @@ public class Scene1c extends BaseFragment<StateScene1>
         chestOpen.callback(this::openChest);
         add(chestOpen);
 
+        key = objectDrawable(R.drawable.scene1c_key);
+        key.position(40, 33);
+        key.size(200, 200);
+        key.callback(this::getKey);
+        add(key);
+
         dark = objectLayout(R.layout.widget_scene1_dark);
         add(dark);
 
@@ -53,26 +58,45 @@ public class Scene1c extends BaseFragment<StateScene1>
         }
     }
 
+    private void getKey()
+    {
+        if (!stateScene.hasKey())
+        {
+            playSound(Scene1.KEY);
+            stateScene.getKey();
+            setup(stateScene);
+        }
+    }
+
     private void setup(StateScene1 stateScene)
     {
         if (stateScene.isLightOn())
         {
-            dark.setVisibility(View.GONE);
+            gone(dark);
         }
         else
         {
-            dark.setVisibility(View.VISIBLE);
+            visible(dark);
         }
 
         if (stateScene.isChestOpen())
         {
-            chestClose.setVisibility(View.GONE);
-            chestOpen.setVisibility(View.VISIBLE);
+            gone(chestClose);
+            visible(chestOpen);
         }
         else
         {
-            chestClose.setVisibility(View.VISIBLE);
-            chestOpen.setVisibility(View.GONE);
+            visible(chestClose);
+            gone(chestOpen);
+        }
+
+        if (stateScene.isChestOpen() && !stateScene.hasKey())
+        {
+            visible(key);
+        }
+        else
+        {
+            gone(key);
         }
     }
 

@@ -1,7 +1,5 @@
 package com.mauriciotogneri.escaperoom.scenes.scene1;
 
-import android.view.View;
-
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.audio.Sound;
 import com.mauriciotogneri.escaperoom.scenes.BaseFragment;
@@ -12,6 +10,8 @@ public class Scene1a extends BaseFragment<StateScene1>
 {
     private InteractiveObject dark;
     private InteractiveObject code;
+    private InteractiveObject chestDrawersClose;
+    private InteractiveObject chestDrawersOpen;
 
     @Override
     protected void initialize(StateScene1 stateScene)
@@ -30,11 +30,17 @@ public class Scene1a extends BaseFragment<StateScene1>
         interrupter.callback(this::toggleLight);
         add(interrupter);
 
-        InteractiveObject chestDrawers = objectDrawable(R.drawable.scene1a_chest_drawers);
-        chestDrawers.position(75, 40);
-        chestDrawers.size(500, 500);
-        chestDrawers.callback(this::openScene1c);
-        add(chestDrawers);
+        chestDrawersClose = objectDrawable(R.drawable.scene1a_chest_drawers_close);
+        chestDrawersClose.position(75, 40);
+        chestDrawersClose.size(500, 500);
+        chestDrawersClose.callback(this::openScene1c);
+        add(chestDrawersClose);
+
+        chestDrawersOpen = objectDrawable(R.drawable.scene1a_chest_drawers_open);
+        chestDrawersOpen.position(75, 40);
+        chestDrawersOpen.size(500, 500);
+        chestDrawersOpen.callback(this::openScene1c);
+        add(chestDrawersOpen);
 
         code = objectDrawable(R.drawable.scene1a_code);
         code.position(52.5f, 18);
@@ -60,10 +66,21 @@ public class Scene1a extends BaseFragment<StateScene1>
 
     private void setup(StateScene1 stateScene)
     {
+        if (stateScene.isChestOpen())
+        {
+            gone(chestDrawersClose);
+            visible(chestDrawersOpen);
+        }
+        else
+        {
+            visible(chestDrawersClose);
+            gone(chestDrawersOpen);
+        }
+
         if (stateScene.isLightOn())
         {
-            code.setVisibility(View.GONE);
-            dark.setVisibility(View.GONE);
+            gone(code);
+            gone(dark);
 
             if (stateScene.isDoorOpen())
             {
@@ -76,8 +93,8 @@ public class Scene1a extends BaseFragment<StateScene1>
         }
         else
         {
-            code.setVisibility(View.VISIBLE);
-            dark.setVisibility(View.VISIBLE);
+            visible(code);
+            visible(dark);
         }
     }
 

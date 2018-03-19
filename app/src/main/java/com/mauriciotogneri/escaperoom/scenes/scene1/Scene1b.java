@@ -1,7 +1,5 @@
 package com.mauriciotogneri.escaperoom.scenes.scene1;
 
-import android.view.View;
-
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.audio.Sound;
 import com.mauriciotogneri.escaperoom.scenes.BaseFragment;
@@ -71,11 +69,11 @@ public class Scene1b extends BaseFragment<StateScene1>
     {
         if (stateScene.isLightOn())
         {
-            dark.setVisibility(View.GONE);
+            gone(dark);
         }
         else
         {
-            dark.setVisibility(View.VISIBLE);
+            visible(dark);
         }
     }
 

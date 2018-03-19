@@ -11,5 +11,6 @@ public class Sound
         public static final String SWITCH = BASE + "switch.ogg";
         public static final String UNLOCKED = BASE + "unlocked.ogg";
         public static final String DRAWER = BASE + "drawer.ogg";
+        public static final String KEY = BASE + "key.ogg";
     }
 }

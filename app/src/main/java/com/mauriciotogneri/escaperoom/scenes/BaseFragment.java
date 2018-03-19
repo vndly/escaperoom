@@ -57,6 +57,16 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         return InteractiveObject.fromResource(getContext(), resId);
     }
 
+    protected void visible(View view)
+    {
+        view.setVisibility(View.VISIBLE);
+    }
+
+    protected void gone(View view)
+    {
+        view.setVisibility(View.GONE);
+    }
+
     protected void playSound(String name)
     {
         EscapeRoom.audioManager().playAudio(name, false);

@@ -16,6 +16,7 @@ process_file()
 }
 
 mkdir -p $OUTPUT/drawable-nodpi
+rm $OUTPUT/drawable-nodpi/*.png
 
 list_files()
 {
