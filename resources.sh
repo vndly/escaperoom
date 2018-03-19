@@ -12,23 +12,24 @@ process_file()
 	WIDTH="${array[1]}"
 	HEIGHT="${array[2]}"
 
-	if [ $WIDTH = "0" ]; then
-    	inkscape -z -f $FILE_PATH -e $OUTPUT/drawable-nodpi/$NAME.png -w 1920 -h 1080
-    else
-    	inkscape -z -f $FILE_PATH -e $OUTPUT/drawable-mdpi/$NAME.png -w $WIDTH -h $HEIGHT
-		inkscape -z -f $FILE_PATH -e $OUTPUT/drawable-hdpi/$NAME.png -w $((($WIDTH/2)+$WIDTH)) -h $((($HEIGHT/2)+$HEIGHT))
-		inkscape -z -f $FILE_PATH -e $OUTPUT/drawable-xhdpi/$NAME.png -w $(($WIDTH*2)) -h $(($HEIGHT*2))
-		inkscape -z -f $FILE_PATH -e $OUTPUT/drawable-xxhdpi/$NAME.png -w $(($WIDTH*3)) -h $(($HEIGHT*3))
-		inkscape -z -f $FILE_PATH -e $OUTPUT/drawable-xxxhdpi/$NAME.png -w $(($WIDTH*4)) -h $(($HEIGHT*4))
-	fi
+	#if [ $WIDTH = "0" ]; then
+    	#inkscape -z -f $FILE_PATH -e $OUTPUT/drawable-nodpi/$NAME.png -w 1920 -h 1080
+    	inkscape -z -f $FILE_PATH -e $OUTPUT/drawable-nodpi/$NAME.png -w $WIDTH -h $HEIGHT
+    #else
+    	#inkscape -z -f $FILE_PATH -e $OUTPUT/drawable-mdpi/$NAME.png -w $WIDTH -h $HEIGHT
+		#inkscape -z -f $FILE_PATH -e $OUTPUT/drawable-hdpi/$NAME.png -w $((($WIDTH/2)+$WIDTH)) -h $((($HEIGHT/2)+$HEIGHT))
+		##inkscape -z -f $FILE_PATH -e $OUTPUT/drawable-xhdpi/$NAME.png -w $(($WIDTH*2)) -h $(($HEIGHT*2))
+		#inkscape -z -f $FILE_PATH -e $OUTPUT/drawable-xxhdpi/$NAME.png -w $(($WIDTH*3)) -h $(($HEIGHT*3))
+		#inkscape -z -f $FILE_PATH -e $OUTPUT/drawable-xxxhdpi/$NAME.png -w $(($WIDTH*4)) -h $(($HEIGHT*4))
+	#fi
 }
 
 mkdir -p $OUTPUT/drawable-nodpi
-mkdir -p $OUTPUT/drawable-mdpi
-mkdir -p $OUTPUT/drawable-hdpi
-mkdir -p $OUTPUT/drawable-xhdpi
-mkdir -p $OUTPUT/drawable-xxhdpi
-mkdir -p $OUTPUT/drawable-xxxhdpi
+#mkdir -p $OUTPUT/drawable-mdpi
+#mkdir -p $OUTPUT/drawable-hdpi
+#mkdir -p $OUTPUT/drawable-xhdpi
+#mkdir -p $OUTPUT/drawable-xxhdpi
+#mkdir -p $OUTPUT/drawable-xxxhdpi
 
 list_files()
 {
