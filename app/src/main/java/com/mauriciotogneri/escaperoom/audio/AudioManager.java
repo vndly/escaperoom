@@ -17,19 +17,7 @@ public class AudioManager
     private MediaPlayer player;
     private int audioPosition = 0;
 
-    private static AudioManager instance;
-
-    public static void initialize(Context context)
-    {
-        AudioManager.instance = new AudioManager(context);
-    }
-
-    public static AudioManager getInstance()
-    {
-        return AudioManager.instance;
-    }
-
-    private AudioManager(Context context)
+    public AudioManager(Context context)
     {
         this.context = context;
 
@@ -51,9 +39,9 @@ public class AudioManager
 
         try
         {
-            assetDescriptor = this.context.getAssets().openFd(soundPath);
-            int resourceId = this.soundPool.load(assetDescriptor, 1);
-            this.soundsMap.put(soundPath, resourceId);
+            assetDescriptor = context.getAssets().openFd(soundPath);
+            int resourceId = soundPool.load(assetDescriptor, 1);
+            soundsMap.put(soundPath, resourceId);
         }
         catch (Exception e)
         {
@@ -67,9 +55,9 @@ public class AudioManager
 
     public void playSound(String soundPath)
     {
-        if (this.soundsMap.containsKey(soundPath))
+        if (soundsMap.containsKey(soundPath))
         {
-            playbackSound(this.soundsMap.get(soundPath));
+            playbackSound(soundsMap.get(soundPath));
         }
         else
         {
@@ -79,27 +67,25 @@ public class AudioManager
 
     private void playbackSound(int resourceId)
     {
-        this.soundPool.play(resourceId, 1f, 1f, 1, 0, 1f);
+        soundPool.play(resourceId, 1f, 1f, 1, 0, 1f);
     }
 
-    public void playAudio(String audioPath)
+    public void playAudio(String audioPath, boolean loop)
     {
-        stopMusic();
+        stopPlayer();
 
         AssetFileDescriptor assetDescriptor = null;
 
         try
         {
-            assetDescriptor = this.context.getAssets().openFd(audioPath);
+            assetDescriptor = context.getAssets().openFd(audioPath);
 
-            this.player = new MediaPlayer();
-            this.player.setDataSource(assetDescriptor.getFileDescriptor(), assetDescriptor.getStartOffset(), assetDescriptor.getLength());
-            this.player.setLooping(true);
-            this.player.setVolume(0.5f, 0.5f);
-
-            this.player.setOnPreparedListener(MediaPlayer::start);
-
-            this.player.prepare();
+            player = new MediaPlayer();
+            player.setDataSource(assetDescriptor.getFileDescriptor(), assetDescriptor.getStartOffset(), assetDescriptor.getLength());
+            player.setLooping(loop);
+            player.setVolume(1f, 1f);
+            player.setOnPreparedListener(MediaPlayer::start);
+            player.prepare();
         }
         catch (Exception e)
         {
@@ -111,14 +97,14 @@ public class AudioManager
         }
     }
 
-    private void stopMusic()
+    private void stopPlayer()
     {
-        if (this.player != null)
+        if (player != null)
         {
             try
             {
-                this.player.stop();
-                this.player.release();
+                player.stop();
+                player.release();
             }
             catch (Exception e)
             {
@@ -131,10 +117,10 @@ public class AudioManager
     {
         try
         {
-            if ((this.player != null) && (!this.player.isPlaying()))
+            if ((player != null) && (!player.isPlaying()))
             {
-                this.player.seekTo(this.audioPosition);
-                this.player.start();
+                player.seekTo(audioPosition);
+                player.start();
             }
         }
         catch (Exception e)
@@ -145,12 +131,12 @@ public class AudioManager
 
     public void pauseAudio()
     {
-        if (this.player != null)
+        if (player != null)
         {
             try
             {
-                this.player.pause();
-                this.audioPosition = this.player.getCurrentPosition();
+                player.pause();
+                audioPosition = player.getCurrentPosition();
             }
             catch (Exception e)
             {
@@ -161,18 +147,18 @@ public class AudioManager
 
     public void stopAudio()
     {
-        stopMusic();
+        stopPlayer();
 
-        if (this.soundPool != null)
+        if (soundPool != null)
         {
-            Collection<Integer> soundsIds = this.soundsMap.values();
+            Collection<Integer> soundsIds = soundsMap.values();
 
             for (Integer soundId : soundsIds)
             {
-                this.soundPool.unload(soundId);
+                soundPool.unload(soundId);
             }
 
-            this.soundPool.release();
+            soundPool.release();
         }
     }
 

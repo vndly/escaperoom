@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.activities.GameActivity;
-import com.mauriciotogneri.escaperoom.audio.AudioManager;
+import com.mauriciotogneri.escaperoom.app.EscapeRoom;
 import com.mauriciotogneri.escaperoom.interactions.RectRegisteredClick;
 import com.mauriciotogneri.escaperoom.interactions.RegisteredClick;
 import com.mauriciotogneri.escaperoom.interactions.RegisteredClick.OnRegionClick;
@@ -59,7 +59,7 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
 
     protected void playSound(String name)
     {
-        AudioManager.getInstance().playSound(name);
+        EscapeRoom.audioManager().playAudio(name, false);
     }
 
     protected void background(@DrawableRes int resId)
