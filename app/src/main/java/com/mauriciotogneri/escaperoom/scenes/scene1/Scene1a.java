@@ -16,21 +16,21 @@ public class Scene1a extends BaseFragment<StateScene1>
     @Override
     protected void initialize(StateScene1 stateScene)
     {
-        background(R.drawable.scene1a);
+        background(R.drawable.scene1a_background);
 
-        InteractiveObject pad = objectDrawable(R.drawable.pad);
+        InteractiveObject pad = objectDrawable(R.drawable.scene1a_pad);
         pad.position(10, 44);
         pad.size(100, 100);
         pad.callback(this::openScene1b);
         add(pad);
 
-        InteractiveObject interrupter = objectDrawable(R.drawable.interrupter);
-        interrupter.position(35, 47);
-        interrupter.size(60, 60);
+        InteractiveObject interrupter = objectDrawable(R.drawable.scene1a_interrupter);
+        interrupter.position(30, 40);
+        interrupter.size(200, 200);
         interrupter.callback(this::toggleLight);
         add(interrupter);
 
-        code = objectDrawable(R.drawable.code);
+        code = objectDrawable(R.drawable.scene1a_code);
         code.position(52.5f, 18);
         code.size(400, 200);
         add(code);

@@ -30,7 +30,16 @@ mkdir -p $OUTPUT/drawable-xhdpi
 mkdir -p $OUTPUT/drawable-xxhdpi
 mkdir -p $OUTPUT/drawable-xxxhdpi
 
-for entry in ./resources/*
-do
-	process_file $entry
-done
+list_files()
+{
+    for entry in "$1"/*
+    do
+        if [ -d "$entry" ]; then
+            list_files "$entry"
+        elif [ -f "$entry" ]; then
+            process_file $entry
+        fi
+    done
+}
+
+list_files ./resources
