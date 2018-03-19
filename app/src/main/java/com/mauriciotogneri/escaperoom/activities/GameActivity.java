@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.scenes.scene1.Scene1a;
 import com.mauriciotogneri.escaperoom.scenes.scene1.Scene1b;
+import com.mauriciotogneri.escaperoom.scenes.scene1.Scene1c;
 import com.mauriciotogneri.escaperoom.scenes.scene2.Scene2a;
 
 public class GameActivity extends BaseActivity
@@ -41,6 +42,11 @@ public class GameActivity extends BaseActivity
     public void openScene1b()
     {
         openScene(new Scene1b());
+    }
+
+    public void openScene1c()
+    {
+        openScene(new Scene1c());
     }
 
     public void openScene2a()

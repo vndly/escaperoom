@@ -30,6 +30,12 @@ public class Scene1a extends BaseFragment<StateScene1>
         interrupter.callback(this::toggleLight);
         add(interrupter);
 
+        InteractiveObject chestDrawers = objectDrawable(R.drawable.scene1a_chest_drawers);
+        chestDrawers.position(75, 40);
+        chestDrawers.size(500, 500);
+        chestDrawers.callback(this::openScene1c);
+        add(chestDrawers);
+
         code = objectDrawable(R.drawable.scene1a_code);
         code.position(52.5f, 18);
         code.size(400, 200);

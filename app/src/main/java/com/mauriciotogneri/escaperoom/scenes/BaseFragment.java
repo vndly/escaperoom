@@ -77,6 +77,11 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         gameActivity().openScene1b();
     }
 
+    protected void openScene1c()
+    {
+        gameActivity().openScene1c();
+    }
+
     protected void openScene2a()
     {
         gameActivity().openScene2a();

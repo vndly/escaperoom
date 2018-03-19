@@ -5,6 +5,6 @@
     <color name="main.button.on">#00FF00</color>
     <color name="main.button.off">#FF0000</color>
 
-    <color name="pause.background">#CC000000</color>
+    <color name="pause.background">#EE000000</color>
 
 </resources>
