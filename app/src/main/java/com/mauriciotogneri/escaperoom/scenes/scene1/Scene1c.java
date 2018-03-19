@@ -26,7 +26,7 @@ public class Scene1c extends BaseFragment<StateScene1>
 
         chestClose = objectDrawable(R.drawable.scene1c_chest_drawers_close);
         chestClose.position(10, 20);
-        chestClose.size(1000, 1000);
+        chestClose.size(2000, 2000);
         chestClose.callback(this::openChest);
         add(chestClose);
 
