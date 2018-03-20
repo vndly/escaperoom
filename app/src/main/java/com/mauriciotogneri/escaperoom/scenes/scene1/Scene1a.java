@@ -51,7 +51,7 @@ public class Scene1a extends BaseFragment<StateScene1>
         dark = objectLayout(R.layout.widget_scene1_dark);
         add(dark);
 
-        registerClick(16, 24, 31, 72, this::openDoor);
+        registerClick(320, 254, 602, 782, this::openDoor);
 
         setup(stateScene);
     }

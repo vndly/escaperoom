@@ -4,6 +4,7 @@ import android.support.annotation.DrawableRes;
 
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.audio.Sound;
+import com.mauriciotogneri.escaperoom.audio.Sound.Scene1;
 import com.mauriciotogneri.escaperoom.scenes.BaseFragment;
 import com.mauriciotogneri.escaperoom.state.StateScene1;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
@@ -38,6 +39,8 @@ public class Scene1b extends BaseFragment<StateScene1>
         numbers.add(addButton(8, 845, 712, R.drawable.scene1b_pad_number8));
         numbers.add(addButton(9, 1094, 712, R.drawable.scene1b_pad_number9));
 
+        registerClick(562, 175, 1360, 974, this::openPad);
+
         dark = objectLayout(R.layout.widget_scene1_dark);
         add(dark);
 
@@ -53,6 +56,14 @@ public class Scene1b extends BaseFragment<StateScene1>
         add(button);
 
         return button;
+    }
+
+    private void openPad()
+    {
+        if (!stateScene.isPadOpen())
+        {
+            playSound(Scene1.PAD_LOCKED);
+        }
     }
 
     private void onButtonClick(int digit)

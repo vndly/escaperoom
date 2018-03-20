@@ -39,9 +39,9 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState)
     {
         view = inflater.inflate(layout(), viewGroup, false);
-        view.setOnTouchListener(this);
 
         canvas = view.findViewById(R.id.canvas);
+        canvas.setOnTouchListener(this);
         canvas.onInitialized(this);
 
         return view;
@@ -134,8 +134,8 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         float width = view.getWidth();
         float height = view.getHeight();
 
-        int xPos = (int) (x * 100 / width);
-        int yPos = (int) (y * 100 / height);
+        int xPos = (int) (x / width * SceneLayout.BASE_WIDTH);
+        int yPos = (int) (y / height * SceneLayout.BASE_HEIGHT);
 
         Log.d("onTouch", String.format("x: %s, y: %s", xPos, yPos));
 
