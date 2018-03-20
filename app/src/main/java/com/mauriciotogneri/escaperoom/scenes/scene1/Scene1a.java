@@ -85,19 +85,19 @@ public class Scene1a extends BaseFragment<StateScene1>
             gone(chestDrawersOpen);
         }
 
+        if (stateScene.isDoorOpen())
+        {
+            background(R.drawable.scene1a_background_open);
+        }
+        else
+        {
+            background(R.drawable.scene1a_background_close);
+        }
+
         if (stateScene.isLightOn())
         {
             gone(code);
             gone(dark);
-
-            if (stateScene.isDoorOpen())
-            {
-                background(R.drawable.scene1a_background_open);
-            }
-            else
-            {
-                background(R.drawable.scene1a_background_close);
-            }
         }
         else
         {

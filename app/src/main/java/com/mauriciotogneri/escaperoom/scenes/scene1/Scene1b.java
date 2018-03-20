@@ -76,7 +76,6 @@ public class Scene1b extends BaseFragment<StateScene1>
         if (digitsInput.add(digit))
         {
             stateScene.openDoor();
-            stateScene.lightOn();
 
             playSound(Sound.Scene1.UNLOCKED);
         }
