@@ -170,7 +170,7 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         menu.callback(() -> gameActivity().openMenu());
         add(menu);
 
-        bag = objectDrawable(R.drawable.ic_bag);
+        bag = objectDrawable(R.drawable.ic_bag_off);
         bag.position(1700, 850);
         bag.size(200, 200);
         bag.callback(() -> gameActivity().openMenu());
