@@ -1,5 +1,7 @@
 package com.mauriciotogneri.escaperoom.scenes.scene1;
 
+import android.support.annotation.DrawableRes;
+
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.audio.Sound;
 import com.mauriciotogneri.escaperoom.scenes.BaseFragment;
@@ -22,17 +24,17 @@ public class Scene1b extends BaseFragment<StateScene1>
         back.callback(this::openScene1a);
         add(back);
 
-        addButton(1, 595, 216);
-        addButton(2, 845, 216);
-        addButton(3, 1094, 216);
+        addButton(1, 595, 216,R.drawable.scene1b_pad_number1);
+        addButton(2, 845, 216,R.drawable.scene1b_pad_number2);
+        addButton(3, 1094, 216,R.drawable.scene1b_pad_number3);
 
-        addButton(4, 595, 464);
-        addButton(5, 845, 464);
-        addButton(6, 1094, 464);
+        addButton(4, 595, 464,R.drawable.scene1b_pad_number4);
+        addButton(5, 845, 464,R.drawable.scene1b_pad_number5);
+        addButton(6, 1094, 464,R.drawable.scene1b_pad_number6);
 
-        addButton(7, 595, 712);
-        addButton(8, 845, 712);
-        addButton(9, 1094, 712);
+        addButton(7, 595, 712,R.drawable.scene1b_pad_number7);
+        addButton(8, 845, 712,R.drawable.scene1b_pad_number8);
+        addButton(9, 1094, 712,R.drawable.scene1b_pad_number9);
 
         dark = objectLayout(R.layout.widget_scene1_dark);
         add(dark);
@@ -40,10 +42,9 @@ public class Scene1b extends BaseFragment<StateScene1>
         setup(stateScene);
     }
 
-    private void addButton(int digit, int x, int y)
+    private void addButton(int digit, int x, int y, @DrawableRes  int imageId)
     {
-        InteractiveObject button = objectLayout(R.layout.widget_scene1b_button_pad);
-        button.text(String.valueOf(digit));
+        InteractiveObject button = objectDrawable(imageId);
         button.position(x, y);
         button.size(230, 230);
         button.callback(() -> onButtonClick(digit));
