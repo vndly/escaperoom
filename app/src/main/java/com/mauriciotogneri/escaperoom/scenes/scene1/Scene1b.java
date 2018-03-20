@@ -43,49 +43,10 @@ public class Scene1b extends BaseFragment<StateScene1>
 
         dark = objectLayout(R.layout.widget_scene1_dark);
         add(dark);
-
-        update(stateScene);
     }
 
-    private InteractiveObject addButton(int digit, int x, int y, @DrawableRes int imageId)
-    {
-        InteractiveObject button = objectDrawable(imageId);
-        button.position(x, y);
-        button.size(230, 230);
-        button.callback(() -> onButtonClick(digit));
-        add(button);
-
-        return button;
-    }
-
-    private void openPad()
-    {
-        if (stateScene.hasKey())
-        {
-            stateScene.openPad();
-            update(stateScene);
-        }
-        else if (!stateScene.isPadOpen())
-        {
-            playSound(Scene1.PAD_LOCKED);
-        }
-    }
-
-    private void onButtonClick(int digit)
-    {
-        if (digitsInput.add(digit))
-        {
-            stateScene.openDoor();
-
-            playSound(Sound.Scene1.UNLOCKED);
-        }
-        else
-        {
-            playSound(Sound.Scene1.DIAL);
-        }
-    }
-
-    private void update(StateScene1 stateScene)
+    @Override
+    protected void onUpdate(StateScene1 state)
     {
         if (stateScene.isPadOpen())
         {
@@ -113,6 +74,44 @@ public class Scene1b extends BaseFragment<StateScene1>
         else
         {
             visible(dark);
+        }
+    }
+
+    private InteractiveObject addButton(int digit, int x, int y, @DrawableRes int imageId)
+    {
+        InteractiveObject button = objectDrawable(imageId);
+        button.position(x, y);
+        button.size(230, 230);
+        button.callback(() -> onButtonClick(digit));
+        add(button);
+
+        return button;
+    }
+
+    private void openPad()
+    {
+        if (stateScene.hasKey())
+        {
+            stateScene.openPad();
+            update();
+        }
+        else if (!stateScene.isPadOpen())
+        {
+            playSound(Scene1.PAD_LOCKED);
+        }
+    }
+
+    private void onButtonClick(int digit)
+    {
+        if (digitsInput.add(digit))
+        {
+            stateScene.openDoor();
+
+            playSound(Sound.Scene1.UNLOCKED);
+        }
+        else
+        {
+            playSound(Sound.Scene1.DIAL);
         }
     }
 

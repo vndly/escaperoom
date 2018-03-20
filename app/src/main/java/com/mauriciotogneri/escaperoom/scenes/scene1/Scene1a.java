@@ -50,20 +50,10 @@ public class Scene1a extends BaseFragment<StateScene1>
         add(dark);
 
         registerClick(320, 254, 602, 782, this::openDoor);
-
-        update(stateScene);
     }
 
-    private void toggleLight()
-    {
-        playSound(Sound.Scene1.SWITCH);
-
-        stateScene.toggleLight();
-
-        update(stateScene);
-    }
-
-    private void update(StateScene1 stateScene)
+    @Override
+    protected void onUpdate(StateScene1 state)
     {
         if (stateScene.isPadOpen())
         {
@@ -104,6 +94,13 @@ public class Scene1a extends BaseFragment<StateScene1>
             visible(code);
             visible(dark);
         }
+    }
+
+    private void toggleLight()
+    {
+        playSound(Sound.Scene1.SWITCH);
+        stateScene.toggleLight();
+        update();
     }
 
     private void openDoor()

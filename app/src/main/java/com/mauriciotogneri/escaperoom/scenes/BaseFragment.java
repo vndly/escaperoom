@@ -108,9 +108,16 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         return (GameActivity) getActivity();
     }
 
+    protected void update()
+    {
+        onUpdate(stateScene);
+    }
+
     protected void initialize(T stateScene)
     {
     }
+
+    protected abstract void onUpdate(T state);
 
     protected abstract int layout();
 
@@ -163,6 +170,7 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
     {
         stateScene = (T) GameState.getInstance().stateScene(id());
         initialize(stateScene);
+        update();
 
         InteractiveObject menu = objectDrawable(R.drawable.ic_menu);
         menu.position(1780, 40);

@@ -44,31 +44,10 @@ public class Scene1c extends BaseFragment<StateScene1>
 
         dark = objectLayout(R.layout.widget_scene1_dark);
         add(dark);
-
-        update(stateScene);
     }
 
-    private void openChest()
-    {
-        if (!stateScene.isChestOpen())
-        {
-            playSound(Scene1.DRAWER);
-            stateScene.openChest();
-            update(stateScene);
-        }
-    }
-
-    private void getKey()
-    {
-        if (!stateScene.hasKey())
-        {
-            playSound(Scene1.KEY);
-            stateScene.getKey();
-            update(stateScene);
-        }
-    }
-
-    private void update(StateScene1 stateScene)
+    @Override
+    protected void onUpdate(StateScene1 state)
     {
         if (stateScene.isLightOn())
         {
@@ -97,6 +76,26 @@ public class Scene1c extends BaseFragment<StateScene1>
         else
         {
             gone(key);
+        }
+    }
+
+    private void openChest()
+    {
+        if (!stateScene.isChestOpen())
+        {
+            playSound(Scene1.DRAWER);
+            stateScene.openChest();
+            update();
+        }
+    }
+
+    private void getKey()
+    {
+        if (!stateScene.hasKey())
+        {
+            playSound(Scene1.KEY);
+            stateScene.getKey();
+            update();
         }
     }
 

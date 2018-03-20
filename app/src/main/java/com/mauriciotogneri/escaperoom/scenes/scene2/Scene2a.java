@@ -13,6 +13,11 @@ public class Scene2a extends BaseFragment<StateScene2>
     }
 
     @Override
+    protected void onUpdate(StateScene2 state)
+    {
+    }
+
+    @Override
     protected int layout()
     {
         return R.layout.screen_scene;
