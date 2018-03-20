@@ -1,6 +1,5 @@
 package com.mauriciotogneri.escaperoom.scenes;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
@@ -38,7 +37,6 @@ public abstract class BaseFragment<T extends BaseScene> extends Fragment impleme
     private final List<RegisteredClick> registeredClicks = new ArrayList<>();
 
     @Override
-    @SuppressLint("ClickableViewAccessibility")
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState)
     {
         view = inflater.inflate(layout(), viewGroup, false);
@@ -111,11 +109,11 @@ public abstract class BaseFragment<T extends BaseScene> extends Fragment impleme
 
         if (stateScene.hasKey())
         {
-            visible(bag);
+            //visible(bag);
         }
         else
         {
-            gone(bag);
+            //gone(bag);
         }
     }
 
