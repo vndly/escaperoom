@@ -26,7 +26,7 @@ public class GameState
         return GameState.instance;
     }
 
-    public StateScene stateScene(int id)
+    public BaseScene stateScene(int id)
     {
         if (id == 1)
         {

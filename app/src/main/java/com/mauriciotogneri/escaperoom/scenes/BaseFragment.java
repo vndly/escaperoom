@@ -1,5 +1,6 @@
 package com.mauriciotogneri.escaperoom.scenes;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
@@ -19,8 +20,8 @@ import com.mauriciotogneri.escaperoom.interactions.RectRegisteredClick;
 import com.mauriciotogneri.escaperoom.interactions.RegisteredClick;
 import com.mauriciotogneri.escaperoom.interactions.RegisteredClick.OnRegionClick;
 import com.mauriciotogneri.escaperoom.interactions.RoundRegisteredClick;
+import com.mauriciotogneri.escaperoom.state.BaseScene;
 import com.mauriciotogneri.escaperoom.state.GameState;
-import com.mauriciotogneri.escaperoom.state.StateScene;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
 import com.mauriciotogneri.escaperoom.widget.SceneLayout;
 import com.mauriciotogneri.escaperoom.widget.SceneLayout.OnInitialized;
@@ -28,7 +29,7 @@ import com.mauriciotogneri.escaperoom.widget.SceneLayout.OnInitialized;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseFragment<T extends StateScene> extends Fragment implements OnTouchListener, OnInitialized
+public abstract class BaseFragment<T extends BaseScene> extends Fragment implements OnTouchListener, OnInitialized
 {
     protected View view;
     protected T stateScene;
@@ -37,6 +38,7 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
     private final List<RegisteredClick> registeredClicks = new ArrayList<>();
 
     @Override
+    @SuppressLint("ClickableViewAccessibility")
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState)
     {
         view = inflater.inflate(layout(), viewGroup, false);
@@ -73,11 +75,6 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         EscapeRoom.audioManager().playAudio(name, false);
     }
 
-    protected void showInBag(InteractiveObject object)
-    {
-        visible(bag);
-    }
-
     protected void background(@DrawableRes int resId)
     {
         canvas.setBackgroundResource(resId);
@@ -111,6 +108,15 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
     protected void update()
     {
         onUpdate(stateScene);
+
+        if (stateScene.hasKey())
+        {
+            visible(bag);
+        }
+        else
+        {
+            gone(bag);
+        }
     }
 
     protected void initialize(T stateScene)
@@ -170,7 +176,6 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
     {
         stateScene = (T) GameState.getInstance().stateScene(id());
         initialize(stateScene);
-        update();
 
         InteractiveObject menu = objectDrawable(R.drawable.ic_menu);
         menu.position(1780, 40);
@@ -184,5 +189,7 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         bag.callback(() -> gameActivity().openMenu());
         bag.setVisibility(View.GONE);
         add(bag);
+
+        update();
     }
 }
