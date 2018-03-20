@@ -53,7 +53,7 @@ public class Scene1a extends BaseFragment<StateScene1>
 
         registerClick(320, 254, 602, 782, this::openDoor);
 
-        setup(stateScene);
+        update(stateScene);
     }
 
     private void toggleLight()
@@ -62,10 +62,10 @@ public class Scene1a extends BaseFragment<StateScene1>
 
         stateScene.toggleLight();
 
-        setup(stateScene);
+        update(stateScene);
     }
 
-    private void setup(StateScene1 stateScene)
+    private void update(StateScene1 stateScene)
     {
         if (stateScene.isPadOpen())
         {

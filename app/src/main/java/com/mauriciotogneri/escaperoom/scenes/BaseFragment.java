@@ -33,6 +33,7 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
     protected View view;
     protected T stateScene;
     private SceneLayout canvas;
+    private InteractiveObject bag;
     private final List<RegisteredClick> registeredClicks = new ArrayList<>();
 
     @Override
@@ -70,6 +71,11 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
     protected void playSound(String name)
     {
         EscapeRoom.audioManager().playAudio(name, false);
+    }
+
+    protected void showInBag(InteractiveObject object)
+    {
+        visible(bag);
     }
 
     protected void background(@DrawableRes int resId)
@@ -163,5 +169,12 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
         menu.size(100, 100);
         menu.callback(() -> gameActivity().openMenu());
         add(menu);
+
+        bag = objectDrawable(R.drawable.ic_bag);
+        bag.position(1700, 850);
+        bag.size(200, 200);
+        bag.callback(() -> gameActivity().openMenu());
+        bag.setVisibility(View.GONE);
+        add(bag);
     }
 }

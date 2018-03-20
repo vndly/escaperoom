@@ -44,7 +44,7 @@ public class Scene1b extends BaseFragment<StateScene1>
         dark = objectLayout(R.layout.widget_scene1_dark);
         add(dark);
 
-        setup(stateScene);
+        update(stateScene);
     }
 
     private InteractiveObject addButton(int digit, int x, int y, @DrawableRes int imageId)
@@ -81,7 +81,7 @@ public class Scene1b extends BaseFragment<StateScene1>
         }
     }
 
-    private void setup(StateScene1 stateScene)
+    private void update(StateScene1 stateScene)
     {
         if (stateScene.isPadOpen())
         {
