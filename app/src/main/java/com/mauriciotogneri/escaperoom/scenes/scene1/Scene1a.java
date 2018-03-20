@@ -10,6 +10,7 @@ public class Scene1a extends BaseFragment<StateScene1>
 {
     private InteractiveObject dark;
     private InteractiveObject code;
+    private InteractiveObject pad;
     private InteractiveObject chestDrawersClose;
     private InteractiveObject chestDrawersOpen;
 
@@ -18,7 +19,7 @@ public class Scene1a extends BaseFragment<StateScene1>
     {
         background(R.drawable.scene1a_background);
 
-        InteractiveObject pad = objectDrawable(R.drawable.scene1a_pad);
+        pad = objectDrawable(R.drawable.scene1a_pad_close);
         pad.position(192, 475);
         pad.size(100, 100);
         pad.callback(this::openScene1b);
@@ -66,6 +67,15 @@ public class Scene1a extends BaseFragment<StateScene1>
 
     private void setup(StateScene1 stateScene)
     {
+        if (stateScene.isPadOpen())
+        {
+            pad.image(R.drawable.scene1a_pad_open);
+        }
+        else
+        {
+            pad.image(R.drawable.scene1a_pad_close);
+        }
+
         if (stateScene.isChestOpen())
         {
             gone(chestDrawersClose);

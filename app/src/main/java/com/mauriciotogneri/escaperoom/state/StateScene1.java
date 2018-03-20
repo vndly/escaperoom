@@ -2,10 +2,21 @@ package com.mauriciotogneri.escaperoom.state;
 
 public class StateScene1 implements StateScene
 {
+    private boolean isPadOpen = false;
     private boolean lightOn = true;
     private boolean isChestOpen = false;
     private boolean doorOpen = false;
     private boolean hasKey = false;
+
+    public boolean isPadOpen()
+    {
+        return isPadOpen;
+    }
+
+    public void openPad()
+    {
+        isPadOpen = true;
+    }
 
     public boolean isLightOn()
     {

@@ -8,33 +8,35 @@ import com.mauriciotogneri.escaperoom.scenes.BaseFragment;
 import com.mauriciotogneri.escaperoom.state.StateScene1;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Scene1b extends BaseFragment<StateScene1>
 {
     private InteractiveObject dark;
     private final DigitsInput digitsInput = new DigitsInput();
+    private final List<InteractiveObject> numbers = new ArrayList<>();
 
     @Override
     protected void initialize(StateScene1 stateScene)
     {
-        background(R.drawable.scene1b_background);
-
         InteractiveObject back = objectLayout(R.layout.widget_button_back_left);
         back.position(38, 43);
         back.size(100, 100);
         back.callback(this::openScene1a);
         add(back);
 
-        addButton(1, 595, 216,R.drawable.scene1b_pad_number1);
-        addButton(2, 845, 216,R.drawable.scene1b_pad_number2);
-        addButton(3, 1094, 216,R.drawable.scene1b_pad_number3);
+        numbers.add(addButton(1, 595, 216, R.drawable.scene1b_pad_number1));
+        numbers.add(addButton(2, 845, 216, R.drawable.scene1b_pad_number2));
+        numbers.add(addButton(3, 1094, 216, R.drawable.scene1b_pad_number3));
 
-        addButton(4, 595, 464,R.drawable.scene1b_pad_number4);
-        addButton(5, 845, 464,R.drawable.scene1b_pad_number5);
-        addButton(6, 1094, 464,R.drawable.scene1b_pad_number6);
+        numbers.add(addButton(4, 595, 464, R.drawable.scene1b_pad_number4));
+        numbers.add(addButton(5, 845, 464, R.drawable.scene1b_pad_number5));
+        numbers.add(addButton(6, 1094, 464, R.drawable.scene1b_pad_number6));
 
-        addButton(7, 595, 712,R.drawable.scene1b_pad_number7);
-        addButton(8, 845, 712,R.drawable.scene1b_pad_number8);
-        addButton(9, 1094, 712,R.drawable.scene1b_pad_number9);
+        numbers.add(addButton(7, 595, 712, R.drawable.scene1b_pad_number7));
+        numbers.add(addButton(8, 845, 712, R.drawable.scene1b_pad_number8));
+        numbers.add(addButton(9, 1094, 712, R.drawable.scene1b_pad_number9));
 
         dark = objectLayout(R.layout.widget_scene1_dark);
         add(dark);
@@ -42,13 +44,15 @@ public class Scene1b extends BaseFragment<StateScene1>
         setup(stateScene);
     }
 
-    private void addButton(int digit, int x, int y, @DrawableRes  int imageId)
+    private InteractiveObject addButton(int digit, int x, int y, @DrawableRes int imageId)
     {
         InteractiveObject button = objectDrawable(imageId);
         button.position(x, y);
         button.size(230, 230);
         button.callback(() -> onButtonClick(digit));
         add(button);
+
+        return button;
     }
 
     private void onButtonClick(int digit)
@@ -68,6 +72,25 @@ public class Scene1b extends BaseFragment<StateScene1>
 
     private void setup(StateScene1 stateScene)
     {
+        if (stateScene.isPadOpen())
+        {
+            for (InteractiveObject button : numbers)
+            {
+                visible(button);
+            }
+
+            background(R.drawable.scene1b_background_open);
+        }
+        else
+        {
+            for (InteractiveObject button : numbers)
+            {
+                gone(button);
+            }
+
+            background(R.drawable.scene1b_background_close);
+        }
+
         if (stateScene.isLightOn())
         {
             gone(dark);
