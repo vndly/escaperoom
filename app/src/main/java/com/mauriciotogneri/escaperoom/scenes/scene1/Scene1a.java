@@ -19,31 +19,31 @@ public class Scene1a extends BaseFragment<StateScene1>
         background(R.drawable.scene1a_background);
 
         InteractiveObject pad = objectDrawable(R.drawable.scene1a_pad);
-        pad.position(10, 44);
+        pad.position(192, 475);
         pad.size(100, 100);
         pad.callback(this::openScene1b);
         add(pad);
 
         InteractiveObject interrupter = objectDrawable(R.drawable.scene1a_interrupter);
-        interrupter.position(30, 40);
+        interrupter.position(576, 432);
         interrupter.size(200, 200);
         interrupter.callback(this::toggleLight);
         add(interrupter);
 
         chestDrawersClose = objectDrawable(R.drawable.scene1a_chest_drawers_close);
-        chestDrawersClose.position(75, 40);
+        chestDrawersClose.position(1440, 432);
         chestDrawersClose.size(500, 500);
         chestDrawersClose.callback(this::openScene1c);
         add(chestDrawersClose);
 
         chestDrawersOpen = objectDrawable(R.drawable.scene1a_chest_drawers_open);
-        chestDrawersOpen.position(75, 40);
+        chestDrawersOpen.position(1440, 432);
         chestDrawersOpen.size(500, 500);
         chestDrawersOpen.callback(this::openScene1c);
         add(chestDrawersOpen);
 
         code = objectDrawable(R.drawable.scene1a_code);
-        code.position(52.5f, 18);
+        code.position(1008, 194);
         code.size(400, 200);
         add(code);
 

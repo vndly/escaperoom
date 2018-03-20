@@ -112,7 +112,7 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
 
     protected void add(InteractiveObject object)
     {
-        object.addTo(canvas, SceneLayout.DEFAULT_RATIO);
+        object.addTo(canvas, SceneLayout.BASE_RATIO);
     }
 
     protected void registerClick(int x, int y, int radius, OnRegionClick onRegionClick)

@@ -17,22 +17,22 @@ public class Scene1b extends BaseFragment<StateScene1>
         background(R.drawable.scene1b_background);
 
         InteractiveObject back = objectLayout(R.layout.widget_button_back_left);
-        back.position(2, 4);
+        back.position(38, 43);
         back.size(100, 100);
         back.callback(this::openScene1a);
         add(back);
 
-        addButton(1, 31, 20);
-        addButton(2, 44, 20);
-        addButton(3, 57, 20);
+        addButton(1, 595, 216);
+        addButton(2, 845, 216);
+        addButton(3, 1094, 216);
 
-        addButton(4, 31, 43);
-        addButton(5, 44, 43);
-        addButton(6, 57, 43);
+        addButton(4, 595, 464);
+        addButton(5, 845, 464);
+        addButton(6, 1094, 464);
 
-        addButton(7, 31, 66);
-        addButton(8, 44, 66);
-        addButton(9, 57, 66);
+        addButton(7, 595, 712);
+        addButton(8, 845, 712);
+        addButton(9, 1094, 712);
 
         dark = objectLayout(R.layout.widget_scene1_dark);
         add(dark);

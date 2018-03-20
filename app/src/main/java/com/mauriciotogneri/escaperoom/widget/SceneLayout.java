@@ -12,7 +12,10 @@ public class SceneLayout extends RelativeLayout
 {
     private Display display;
     private OnInitialized onInitialized = null;
-    public static final double DEFAULT_RATIO = 16d / 9d;
+
+    public static final double BASE_WIDTH = 1920;
+    public static final double BASE_HEIGHT = 1080;
+    public static final double BASE_RATIO = BASE_WIDTH / BASE_HEIGHT;
 
     public SceneLayout(Context context)
     {
@@ -65,15 +68,15 @@ public class SceneLayout extends RelativeLayout
             int finalWidth;
             int finalHeight;
 
-            if (ratio > DEFAULT_RATIO)
+            if (ratio > BASE_RATIO)
             {
-                finalWidth = (int) (height * DEFAULT_RATIO);
+                finalWidth = (int) (height * BASE_RATIO);
                 finalHeight = (int) height;
             }
-            else if (ratio < DEFAULT_RATIO)
+            else if (ratio < BASE_RATIO)
             {
                 finalWidth = (int) width;
-                finalHeight = (int) (width / DEFAULT_RATIO);
+                finalHeight = (int) (width / BASE_RATIO);
             }
             else
             {

@@ -6,7 +6,6 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -64,14 +63,14 @@ public class InteractiveObject extends RelativeLayout
         setOnClickListener(view -> onClick.onClick());
     }
 
-    public void addTo(ViewGroup canvas, double defaultRatio)
+    public void addTo(SceneLayout canvas, double defaultRatio)
     {
         double canvasWidth = canvas.getMeasuredWidth();
         double canvasHeight = canvas.getMeasuredHeight();
         double ratio = defaultRatio / (canvasWidth / canvasHeight);
 
-        int x = (int) (canvasWidth * (this.x / 100f));
-        int y = (int) (canvasHeight * (this.y / 100f));
+        int x = (int) (canvasWidth * (this.x / SceneLayout.BASE_WIDTH));
+        int y = (int) (canvasHeight * (this.y / SceneLayout.BASE_HEIGHT));
 
         int width = (this.width != 0) ? (int) (this.width * ratio) : (int) canvasWidth;
         int height = (this.height != 0) ? (int) (this.height * ratio) : (int) canvasHeight;

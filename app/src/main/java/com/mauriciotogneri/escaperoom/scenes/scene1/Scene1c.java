@@ -19,25 +19,25 @@ public class Scene1c extends BaseFragment<StateScene1>
         background(R.drawable.scene1c_background);
 
         InteractiveObject back = objectLayout(R.layout.widget_button_back_left);
-        back.position(2, 4);
+        back.position(38, 43);
         back.size(100, 100);
         back.callback(this::openScene1a);
         add(back);
 
         chestClose = objectDrawable(R.drawable.scene1c_chest_drawers_close);
-        chestClose.position(28, 28);
+        chestClose.position(537, 302);
         chestClose.size(800, 300);
         chestClose.callback(this::openChest);
         add(chestClose);
 
         chestOpen = objectDrawable(R.drawable.scene1c_chest_drawers_open);
-        chestOpen.position(18, 24);
+        chestOpen.position(345, 259);
         chestOpen.size(1000, 600);
         chestOpen.callback(this::openChest);
         add(chestOpen);
 
         key = objectDrawable(R.drawable.scene1c_key);
-        key.position(40, 33);
+        key.position(768, 356);
         key.size(200, 200);
         key.callback(this::getKey);
         add(key);
