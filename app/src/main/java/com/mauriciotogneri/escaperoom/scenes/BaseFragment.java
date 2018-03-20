@@ -157,5 +157,11 @@ public abstract class BaseFragment<T extends StateScene> extends Fragment implem
     {
         stateScene = (T) GameState.getInstance().stateScene(id());
         initialize(stateScene);
+
+        InteractiveObject menu = objectDrawable(R.drawable.ic_menu);
+        menu.position(1780, 40);
+        menu.size(100, 100);
+        menu.callback(() -> gameActivity().openMenu());
+        add(menu);
     }
 }

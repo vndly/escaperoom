@@ -24,14 +24,14 @@ public class GameActivity extends BaseActivity
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        findViewById(R.id.button_menu).setOnClickListener(view ->
-        {
-            Intent intent = new Intent(getApplicationContext(), PauseActivity.class);
-            startActivityForResult(intent, PAUSE_REQUEST_CODE);
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        });
-
         openScene1a();
+    }
+
+    public void openMenu()
+    {
+        Intent intent = new Intent(getApplicationContext(), PauseActivity.class);
+        startActivityForResult(intent, PAUSE_REQUEST_CODE);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     public void openScene1a()
