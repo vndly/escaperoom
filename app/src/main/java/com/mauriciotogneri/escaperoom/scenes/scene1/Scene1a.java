@@ -17,8 +17,6 @@ public class Scene1a extends BaseFragment<StateScene1>
     @Override
     protected void initialize(StateScene1 stateScene)
     {
-        background(R.drawable.scene1a_background);
-
         pad = objectDrawable(R.drawable.scene1a_pad_close);
         pad.position(192, 475);
         pad.size(100, 100);
@@ -94,11 +92,11 @@ public class Scene1a extends BaseFragment<StateScene1>
 
             if (stateScene.isDoorOpen())
             {
-                background(R.drawable.scene1a_background_door_open);
+                background(R.drawable.scene1a_background_open);
             }
             else
             {
-                //
+                background(R.drawable.scene1a_background_close);
             }
         }
         else
