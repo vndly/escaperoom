@@ -14,7 +14,7 @@ import java.util.List;
 public class BaseSceneState
 {
     private final Context context;
-    private ImageView selectedItem;
+    private String selectedItem;
     protected Preferences preferences;
 
     private boolean hasKey;
@@ -41,7 +41,7 @@ public class BaseSceneState
 
     public boolean isKeySelected()
     {
-        return (selectedItem != null) && selectedItem.getTag().toString().equals(FIELD_HAS_KEY);
+        return (selectedItem != null) && selectedItem.equals(FIELD_HAS_KEY);
     }
 
     public void collectKey()
@@ -63,6 +63,7 @@ public class BaseSceneState
             ImageView item = item(R.drawable.scene1c_key);
             item.setOnClickListener(view -> selectItem(item, items));
             item.setTag(FIELD_HAS_KEY);
+            item.setSelected(item.getTag().toString().equals(selectedItem));
             items.add(item);
         }
 
@@ -88,6 +89,6 @@ public class BaseSceneState
         }
 
         currentItem.setSelected(!currentItem.isSelected());
-        selectedItem = currentItem.isSelected() ? currentItem : null;
+        selectedItem = currentItem.isSelected() ? currentItem.getTag().toString() : null;
     }
 }

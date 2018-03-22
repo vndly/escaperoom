@@ -90,6 +90,10 @@ public abstract class BaseFragment<T extends BaseSceneState> extends Fragment im
     protected void update()
     {
         onUpdate(stateScene);
+    }
+
+    protected void updateItems()
+    {
         menuBar.update(stateScene);
     }
 

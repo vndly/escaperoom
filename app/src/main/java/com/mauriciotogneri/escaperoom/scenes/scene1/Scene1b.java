@@ -97,6 +97,7 @@ public class Scene1b extends BaseFragment<StateScene1>
             playSound(Scene1.PAD_LOCKED);
             stateScene.openPad();
             stateScene.useKey();
+            updateItems();
             update();
         }
         else if (!stateScene.isPadOpen())
