@@ -21,7 +21,8 @@ public class Scene1b extends BaseFragment<StateScene1>
     @Override
     protected void initialize(StateScene1 stateScene)
     {
-        InteractiveObject back = objectLayout(R.layout.widget_button_back_left);
+        InteractiveObject back = objectDrawable(R.drawable.ic_back);
+        back.tint(R.color.selector_button_back);
         back.position(38, 43);
         back.size(100, 100);
         back.callback(() -> openScene(new Scene1a()));

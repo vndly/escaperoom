@@ -18,7 +18,8 @@ public class Scene1c extends BaseFragment<StateScene1>
     {
         background(R.drawable.scene1c_background);
 
-        InteractiveObject back = objectLayout(R.layout.widget_button_back_left);
+        InteractiveObject back = objectDrawable(R.drawable.ic_back);
+        back.tint(R.color.selector_button_back);
         back.position(38, 43);
         back.size(100, 100);
         back.callback(() -> openScene(new Scene1a()));

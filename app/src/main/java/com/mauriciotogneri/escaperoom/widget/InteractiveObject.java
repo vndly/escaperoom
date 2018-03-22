@@ -2,9 +2,14 @@ package com.mauriciotogneri.escaperoom.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
@@ -45,6 +50,14 @@ public class InteractiveObject extends ImageView
     {
         this.width = width;
         this.height = height;
+    }
+
+    public void tint(@ColorRes int resId)
+    {
+        ColorStateList colorStateList = ContextCompat.getColorStateList(getContext(), resId);
+        Drawable drawable = DrawableCompat.wrap(getDrawable());
+        DrawableCompat.setTintList(drawable, colorStateList);
+        setImageDrawable(drawable);
     }
 
     public void callback(OnClick onClick)
