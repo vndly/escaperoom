@@ -1,5 +1,6 @@
 package com.mauriciotogneri.escaperoom.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
@@ -7,12 +8,12 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.RelativeLayout.LayoutParams;
 
 import com.mauriciotogneri.escaperoom.R;
 
-public class InteractiveObject extends RelativeLayout
+@SuppressLint("AppCompatCustomView")
+public class InteractiveObject extends ImageView
 {
     private float x = 0;
     private float y = 0;
@@ -32,18 +33,6 @@ public class InteractiveObject extends RelativeLayout
     public InteractiveObject(Context context, @Nullable AttributeSet attrs, int defStyleAttr)
     {
         super(context, attrs, defStyleAttr);
-    }
-
-    public void text(String text)
-    {
-        TextView textView = findViewById(R.id.text);
-        textView.setText(text);
-    }
-
-    public void image(@DrawableRes int image)
-    {
-        ImageView imageView = findViewById(R.id.image);
-        imageView.setImageResource(image);
     }
 
     public void position(float x, float y)
@@ -89,7 +78,7 @@ public class InteractiveObject extends RelativeLayout
     public static InteractiveObject fromResource(Context context, @DrawableRes int resId)
     {
         InteractiveObject object = fromLayout(context, R.layout.widget_interactive_object);
-        object.image(resId);
+        object.setImageResource(resId);
 
         return object;
     }

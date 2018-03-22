@@ -58,11 +58,11 @@ public class Scene1a extends BaseFragment<StateScene1>
     {
         if (stateScene.isPadOpen())
         {
-            pad.image(R.drawable.scene1a_pad_open);
+            pad.setImageResource(R.drawable.scene1a_pad_open);
         }
         else
         {
-            pad.image(R.drawable.scene1a_pad_close);
+            pad.setImageResource(R.drawable.scene1a_pad_close);
         }
 
         if (stateScene.isChestOpen())
