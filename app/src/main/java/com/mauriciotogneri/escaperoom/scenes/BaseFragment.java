@@ -32,6 +32,7 @@ public abstract class BaseFragment<T extends BaseSceneState> extends Fragment im
 {
     protected T stateScene;
     private SceneLayout canvas;
+    private MenuBar menuBar;
     private final List<RegisteredClick> registeredClicks = new ArrayList<>();
 
     @Override
@@ -89,15 +90,7 @@ public abstract class BaseFragment<T extends BaseSceneState> extends Fragment im
     protected void update()
     {
         onUpdate(stateScene);
-
-        if (stateScene.hasKey())
-        {
-            //visible(bag);
-        }
-        else
-        {
-            //gone(bag);
-        }
+        menuBar.update(stateScene);
     }
 
     protected void initialize(T stateScene)
@@ -155,10 +148,11 @@ public abstract class BaseFragment<T extends BaseSceneState> extends Fragment im
     @SuppressWarnings("unchecked")
     public void onInitialized()
     {
-        MenuBar menuBar = MenuBar.create(canvas);
-        menuBar.init(() -> gameActivity().openMenu());
-
         stateScene = (T) state();
+
+        menuBar = MenuBar.create(canvas);
+        menuBar.init(() -> gameActivity().openMenu(), stateScene);
+
         initialize(stateScene);
 
         update();

@@ -7,10 +7,12 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.mauriciotogneri.escaperoom.R;
+import com.mauriciotogneri.escaperoom.state.BaseSceneState;
 
 public class MenuBar extends LinearLayout
 {
@@ -35,9 +37,24 @@ public class MenuBar extends LinearLayout
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    public void init(OnMenu onMenu)
+    public void init(OnMenu onMenu, BaseSceneState state)
     {
         findViewById(R.id.menu).setOnClickListener(view -> onMenu.onMenu());
+        update(state);
+    }
+
+    public void update(BaseSceneState state)
+    {
+        LinearLayout container = findViewById(R.id.items);
+        container.removeAllViews();
+
+        if (state.hasKey())
+        {
+            ImageView item = new ImageView(getContext());
+            item.setImageResource(R.drawable.scene1c_key);
+
+            container.addView(item);
+        }
     }
 
     public static MenuBar create(ViewGroup root)
