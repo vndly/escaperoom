@@ -52,6 +52,11 @@ public class InteractiveObject extends ImageView
         this.height = height;
     }
 
+    public void color(@ColorRes int resId)
+    {
+        setBackgroundColor(ContextCompat.getColor(getContext(), resId));
+    }
+
     public void tint(@ColorRes int resId)
     {
         ColorStateList colorStateList = ContextCompat.getColorStateList(getContext(), resId);

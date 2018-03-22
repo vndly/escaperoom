@@ -47,7 +47,8 @@ public class Scene1a extends BaseFragment<StateScene1>
         code.size(400, 200);
         add(code);
 
-        dark = objectLayout(R.layout.widget_scene1_dark);
+        dark = objectLayout(R.layout.widget_interactive_object);
+        dark.color(R.color.scene1_dark);
         add(dark);
 
         registerClick(320, 254, 602, 782, this::openDoor);

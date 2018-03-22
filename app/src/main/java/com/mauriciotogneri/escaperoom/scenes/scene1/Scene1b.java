@@ -42,7 +42,8 @@ public class Scene1b extends BaseFragment<StateScene1>
 
         registerClick(562, 175, 1360, 974, this::openPad);
 
-        dark = objectLayout(R.layout.widget_scene1_dark);
+        dark = objectLayout(R.layout.widget_interactive_object);
+        dark.color(R.color.scene1_dark);
         add(dark);
     }
 
