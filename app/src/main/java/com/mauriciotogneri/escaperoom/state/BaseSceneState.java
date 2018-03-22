@@ -9,7 +9,7 @@ public class BaseSceneState
 {
     protected Preferences preferences;
 
-    private boolean hasKey = false;
+    private boolean hasKey;
 
     private static final String FIELD_HAS_KEY = "has.key";
 

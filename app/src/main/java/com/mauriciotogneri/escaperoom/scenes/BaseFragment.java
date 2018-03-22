@@ -30,7 +30,6 @@ import java.util.List;
 
 public abstract class BaseFragment<T extends BaseSceneState> extends Fragment implements OnTouchListener, OnInitialized
 {
-    protected View view;
     protected T stateScene;
     private SceneLayout canvas;
     private final List<RegisteredClick> registeredClicks = new ArrayList<>();
@@ -38,7 +37,7 @@ public abstract class BaseFragment<T extends BaseSceneState> extends Fragment im
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState)
     {
-        view = inflater.inflate(layout(), viewGroup, false);
+        View view = inflater.inflate(layout(), viewGroup, false);
 
         canvas = view.findViewById(R.id.canvas);
         canvas.setOnTouchListener(this);
@@ -160,7 +159,6 @@ public abstract class BaseFragment<T extends BaseSceneState> extends Fragment im
         menuBar.init(() -> gameActivity().openMenu());
 
         stateScene = (T) state();
-
         initialize(stateScene);
 
         update();

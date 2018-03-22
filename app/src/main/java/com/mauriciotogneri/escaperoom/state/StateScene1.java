@@ -4,10 +4,10 @@ import android.content.Context;
 
 public class StateScene1 extends BaseSceneState
 {
-    private boolean padOpen = false;
-    private boolean lightOn = true;
-    private boolean chestOpen = false;
-    private boolean doorOpen = false;
+    private boolean padOpen;
+    private boolean lightOn;
+    private boolean chestOpen;
+    private boolean doorOpen;
 
     private static final String FIELD_PAD_OPEN = "pad.open";
     private static final String FIELD_LIGHT_ON = "light.on";
