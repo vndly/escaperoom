@@ -35,9 +35,14 @@ public class MenuBar extends LinearLayout
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
+    public void init(OnMenu onMenu)
+    {
+        findViewById(R.id.menu).setOnClickListener(view -> onMenu.onMenu());
+    }
+
     public static MenuBar create(ViewGroup root)
     {
-        MenuBar menuBar = (MenuBar) View.inflate(root.getContext(), R.layout.view_bag, null);
+        MenuBar menuBar = (MenuBar) View.inflate(root.getContext(), R.layout.view_menubar, null);
 
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(root.getMeasuredWidth() / 12, RelativeLayout.LayoutParams.MATCH_PARENT);
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
@@ -45,5 +50,10 @@ public class MenuBar extends LinearLayout
         root.addView(menuBar, layoutParams);
 
         return menuBar;
+    }
+
+    public interface OnMenu
+    {
+        void onMenu();
     }
 }

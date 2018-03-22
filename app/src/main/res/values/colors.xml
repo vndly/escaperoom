@@ -5,6 +5,8 @@
     <color name="main.button.on">#00FF00</color>
     <color name="main.button.off">#FF0000</color>
 
+    <color name="menuBar.background">#191E31</color>
+
     <color name="scene1.dark">#DD000000</color>
 
     <color name="pause.background">#EE000000</color>
