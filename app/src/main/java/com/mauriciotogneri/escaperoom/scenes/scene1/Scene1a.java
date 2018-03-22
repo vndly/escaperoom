@@ -31,13 +31,13 @@ public class Scene1a extends BaseFragment<StateScene1>
         add(interrupter);
 
         chestDrawersClose = objectDrawable(R.drawable.scene1a_chest_drawers_close);
-        chestDrawersClose.position(1440, 432);
+        chestDrawersClose.position(1240, 432);
         chestDrawersClose.size(500, 500);
         chestDrawersClose.callback(() -> openScene(new Scene1c()));
         add(chestDrawersClose);
 
         chestDrawersOpen = objectDrawable(R.drawable.scene1a_chest_drawers_open);
-        chestDrawersOpen.position(1440, 432);
+        chestDrawersOpen.position(1240, 432);
         chestDrawersOpen.size(500, 500);
         chestDrawersOpen.callback(() -> openScene(new Scene1c()));
         add(chestDrawersOpen);

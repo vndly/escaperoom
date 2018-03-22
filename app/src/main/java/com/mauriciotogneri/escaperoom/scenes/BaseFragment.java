@@ -11,6 +11,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.activities.GameActivity;
@@ -33,7 +35,6 @@ public abstract class BaseFragment<T extends BaseScene> extends Fragment impleme
     protected View view;
     protected T stateScene;
     private SceneLayout canvas;
-    private InteractiveObject bag;
     private final List<RegisteredClick> registeredClicks = new ArrayList<>();
 
     @Override
@@ -157,6 +158,13 @@ public abstract class BaseFragment<T extends BaseScene> extends Fragment impleme
     @SuppressWarnings("unchecked")
     public void onInitialized()
     {
+        View menuBag = View.inflate(getContext(), R.layout.view_bag, null);
+
+        LayoutParams layoutParams = new LayoutParams(canvas.getMeasuredWidth() / 12, LayoutParams.MATCH_PARENT);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+
+        canvas.addView(menuBag, layoutParams);
+
         stateScene = (T) GameState.getInstance().stateScene(id());
         initialize(stateScene);
 
@@ -165,13 +173,6 @@ public abstract class BaseFragment<T extends BaseScene> extends Fragment impleme
         menu.size(100, 100);
         menu.callback(() -> gameActivity().openMenu());
         add(menu);
-
-        bag = objectDrawable(R.drawable.ic_bag_off);
-        bag.position(1700, 850);
-        bag.size(200, 200);
-        bag.callback(() -> gameActivity().openMenu());
-        bag.setVisibility(View.GONE);
-        add(bag);
 
         update();
     }
