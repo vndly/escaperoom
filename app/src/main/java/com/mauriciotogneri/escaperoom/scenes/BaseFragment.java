@@ -11,8 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.activities.GameActivity;
@@ -24,6 +22,7 @@ import com.mauriciotogneri.escaperoom.interactions.RoundRegisteredClick;
 import com.mauriciotogneri.escaperoom.state.BaseScene;
 import com.mauriciotogneri.escaperoom.state.GameState;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
+import com.mauriciotogneri.escaperoom.widget.MenuBar;
 import com.mauriciotogneri.escaperoom.widget.SceneLayout;
 import com.mauriciotogneri.escaperoom.widget.SceneLayout.OnInitialized;
 
@@ -158,12 +157,7 @@ public abstract class BaseFragment<T extends BaseScene> extends Fragment impleme
     @SuppressWarnings("unchecked")
     public void onInitialized()
     {
-        View menuBag = View.inflate(getContext(), R.layout.view_bag, null);
-
-        LayoutParams layoutParams = new LayoutParams(canvas.getMeasuredWidth() / 12, LayoutParams.MATCH_PARENT);
-        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-
-        canvas.addView(menuBag, layoutParams);
+        MenuBar menuBar = MenuBar.create(canvas);
 
         stateScene = (T) GameState.getInstance().stateScene(id());
         initialize(stateScene);
