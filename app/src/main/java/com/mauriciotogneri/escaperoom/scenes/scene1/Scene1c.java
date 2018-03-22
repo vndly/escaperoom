@@ -96,7 +96,7 @@ public class Scene1c extends BaseFragment<StateScene1>
         if (!stateScene.hasKey())
         {
             playSound(Scene1.KEY);
-            stateScene.getKey();
+            stateScene.collectKey();
             update();
         }
     }

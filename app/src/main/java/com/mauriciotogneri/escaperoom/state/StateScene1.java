@@ -31,9 +31,7 @@ public class StateScene1 extends BaseSceneState
 
     public void openPad()
     {
-        padOpen = true;
-
-        preferences.save(FIELD_PAD_OPEN, padOpen);
+        preferences.save(FIELD_PAD_OPEN, padOpen = true);
     }
 
     public boolean isLightOn()
@@ -55,9 +53,7 @@ public class StateScene1 extends BaseSceneState
 
     public void openChest()
     {
-        chestOpen = true;
-
-        preferences.save(FIELD_CHEST_OPEN, chestOpen);
+        preferences.save(FIELD_CHEST_OPEN, chestOpen = true);
     }
 
     public boolean isDoorOpen()
@@ -67,8 +63,6 @@ public class StateScene1 extends BaseSceneState
 
     public void openDoor()
     {
-        doorOpen = true;
-
-        preferences.save(FIELD_DOOR_OPEN, doorOpen);
+        preferences.save(FIELD_DOOR_OPEN, doorOpen = true);
     }
 }

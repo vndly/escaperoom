@@ -3,7 +3,6 @@ package com.mauriciotogneri.escaperoom.widget;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build.VERSION_CODES;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -56,34 +55,10 @@ public class MenuBar extends LinearLayout
 
         items.clear();
 
-        if (state.hasKey())
+        for (ImageView item : state.items())
         {
-            ImageView item = item(R.drawable.scene1c_key);
-            item.setOnClickListener(view -> selectItem(item));
-
             container.addView(item);
         }
-    }
-
-    private ImageView item(@DrawableRes int resId)
-    {
-        ImageView item = (ImageView) ImageView.inflate(getContext(), R.layout.view_menu_item, null);
-        item.setImageResource(resId);
-
-        return item;
-    }
-
-    private void selectItem(ImageView selectedItem)
-    {
-        for (ImageView item : items)
-        {
-            if (item != selectedItem)
-            {
-                item.setSelected(false);
-            }
-        }
-
-        selectedItem.setSelected(!selectedItem.isSelected());
     }
 
     public static MenuBar create(ViewGroup root)
