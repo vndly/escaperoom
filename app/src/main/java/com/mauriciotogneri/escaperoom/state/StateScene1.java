@@ -1,20 +1,39 @@
 package com.mauriciotogneri.escaperoom.state;
 
-public class StateScene1 extends BaseScene
+import android.content.Context;
+
+public class StateScene1 extends BaseSceneState
 {
-    private boolean isPadOpen = false;
+    private boolean padOpen = false;
     private boolean lightOn = true;
-    private boolean isChestOpen = false;
+    private boolean chestOpen = false;
     private boolean doorOpen = false;
+
+    private static final String FIELD_PAD_OPEN = "pad.open";
+    private static final String FIELD_LIGHT_ON = "light.on";
+    private static final String FIELD_CHEST_OPEN = "chest.open";
+    private static final String FIELD_DOOR_OPEN = "door.open";
+
+    public StateScene1(Context context)
+    {
+        super(context);
+
+        this.padOpen = preferences.load(FIELD_PAD_OPEN, false);
+        this.lightOn = preferences.load(FIELD_LIGHT_ON, true);
+        this.chestOpen = preferences.load(FIELD_CHEST_OPEN, false);
+        this.doorOpen = preferences.load(FIELD_DOOR_OPEN, false);
+    }
 
     public boolean isPadOpen()
     {
-        return isPadOpen;
+        return padOpen;
     }
 
     public void openPad()
     {
-        isPadOpen = true;
+        padOpen = true;
+
+        preferences.save(FIELD_PAD_OPEN, padOpen);
     }
 
     public boolean isLightOn()
@@ -25,21 +44,20 @@ public class StateScene1 extends BaseScene
     public void toggleLight()
     {
         lightOn = !lightOn;
-    }
 
-    public void lightOn()
-    {
-        lightOn = true;
+        preferences.save(FIELD_LIGHT_ON, lightOn);
     }
 
     public boolean isChestOpen()
     {
-        return isChestOpen;
+        return chestOpen;
     }
 
     public void openChest()
     {
-        isChestOpen = true;
+        chestOpen = true;
+
+        preferences.save(FIELD_CHEST_OPEN, chestOpen);
     }
 
     public boolean isDoorOpen()
@@ -50,5 +68,7 @@ public class StateScene1 extends BaseScene
     public void openDoor()
     {
         doorOpen = true;
+
+        preferences.save(FIELD_DOOR_OPEN, doorOpen);
     }
 }

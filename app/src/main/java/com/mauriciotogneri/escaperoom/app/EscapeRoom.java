@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 
 import com.mauriciotogneri.escaperoom.audio.AudioManager;
-import com.mauriciotogneri.escaperoom.state.GameState;
 
 public class EscapeRoom extends Application
 {
@@ -17,7 +16,6 @@ public class EscapeRoom extends Application
         super.onCreate();
 
         audioManager = new AudioManager(this);
-        GameState.initialize(this);
     }
 
     public static AudioManager audioManager()

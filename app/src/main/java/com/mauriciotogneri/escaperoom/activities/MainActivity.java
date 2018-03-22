@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.mauriciotogneri.escaperoom.R;
+import com.mauriciotogneri.escaperoom.state.BaseSceneState;
 
 public class MainActivity extends BaseActivity
 {
@@ -20,5 +21,8 @@ public class MainActivity extends BaseActivity
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
         findViewById(R.id.button_exit).setOnClickListener(view -> finish());
+
+        BaseSceneState state = new BaseSceneState(this);
+        state.reset();
     }
 }

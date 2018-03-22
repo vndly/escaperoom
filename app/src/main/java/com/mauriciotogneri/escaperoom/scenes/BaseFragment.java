@@ -19,8 +19,7 @@ import com.mauriciotogneri.escaperoom.interactions.RectRegisteredClick;
 import com.mauriciotogneri.escaperoom.interactions.RegisteredClick;
 import com.mauriciotogneri.escaperoom.interactions.RegisteredClick.OnRegionClick;
 import com.mauriciotogneri.escaperoom.interactions.RoundRegisteredClick;
-import com.mauriciotogneri.escaperoom.state.BaseScene;
-import com.mauriciotogneri.escaperoom.state.GameState;
+import com.mauriciotogneri.escaperoom.state.BaseSceneState;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
 import com.mauriciotogneri.escaperoom.widget.MenuBar;
 import com.mauriciotogneri.escaperoom.widget.SceneLayout;
@@ -29,7 +28,7 @@ import com.mauriciotogneri.escaperoom.widget.SceneLayout.OnInitialized;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseFragment<T extends BaseScene> extends Fragment implements OnTouchListener, OnInitialized
+public abstract class BaseFragment<T extends BaseSceneState> extends Fragment implements OnTouchListener, OnInitialized
 {
     protected View view;
     protected T stateScene;
@@ -110,7 +109,7 @@ public abstract class BaseFragment<T extends BaseScene> extends Fragment impleme
 
     protected abstract int layout();
 
-    protected abstract int id();
+    protected abstract BaseSceneState state();
 
     protected void add(InteractiveObject object)
     {
@@ -160,7 +159,8 @@ public abstract class BaseFragment<T extends BaseScene> extends Fragment impleme
         MenuBar menuBar = MenuBar.create(canvas);
         menuBar.init(() -> gameActivity().openMenu());
 
-        stateScene = (T) GameState.getInstance().stateScene(id());
+        stateScene = (T) state();
+
         initialize(stateScene);
 
         update();

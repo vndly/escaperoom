@@ -124,9 +124,9 @@ public class Scene1b extends BaseFragment<StateScene1>
     }
 
     @Override
-    protected int id()
+    protected StateScene1 state()
     {
-        return 1;
+        return new StateScene1(getContext());
     }
 
     private static class DigitsInput

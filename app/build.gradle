@@ -69,4 +69,7 @@ dependencies
     // support
     implementation "com.android.support:appcompat-v7:$support"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    // android utils
+    implementation 'com.mauriciotogneri:androidutils:2.9.0'
 }

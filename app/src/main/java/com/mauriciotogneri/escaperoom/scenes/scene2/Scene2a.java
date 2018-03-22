@@ -24,8 +24,8 @@ public class Scene2a extends BaseFragment<StateScene2>
     }
 
     @Override
-    protected int id()
+    protected StateScene2 state()
     {
-        return 2;
+        return new StateScene2(getContext());
     }
 }
