@@ -38,7 +38,7 @@ public class Scene1c extends BaseFragment<StateScene1>
         add(chestOpen);
 
         key = objectDrawable(R.drawable.scene1c_key);
-        key.position(768, 356);
+        key.position(768, 390);
         key.size(200, 200);
         key.callback(this::getKey);
         add(key);
