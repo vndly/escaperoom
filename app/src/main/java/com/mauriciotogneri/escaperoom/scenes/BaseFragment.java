@@ -78,24 +78,9 @@ public abstract class BaseFragment<T extends BaseScene> extends Fragment impleme
         canvas.setBackgroundResource(resId);
     }
 
-    protected void openScene1a()
+    protected void openScene(Fragment fragment)
     {
-        gameActivity().openScene1a();
-    }
-
-    protected void openScene1b()
-    {
-        gameActivity().openScene1b();
-    }
-
-    protected void openScene1c()
-    {
-        gameActivity().openScene1c();
-    }
-
-    protected void openScene2a()
-    {
-        gameActivity().openScene2a();
+        gameActivity().openScene(fragment);
     }
 
     private GameActivity gameActivity()

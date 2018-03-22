@@ -8,9 +8,6 @@ import android.view.WindowManager;
 
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.scenes.scene1.Scene1a;
-import com.mauriciotogneri.escaperoom.scenes.scene1.Scene1b;
-import com.mauriciotogneri.escaperoom.scenes.scene1.Scene1c;
-import com.mauriciotogneri.escaperoom.scenes.scene2.Scene2a;
 
 public class GameActivity extends BaseActivity
 {
@@ -24,7 +21,7 @@ public class GameActivity extends BaseActivity
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        openScene1a();
+        openScene(new Scene1a());
     }
 
     public void openMenu()
@@ -34,27 +31,7 @@ public class GameActivity extends BaseActivity
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    public void openScene1a()
-    {
-        openScene(new Scene1a());
-    }
-
-    public void openScene1b()
-    {
-        openScene(new Scene1b());
-    }
-
-    public void openScene1c()
-    {
-        openScene(new Scene1c());
-    }
-
-    public void openScene2a()
-    {
-        openScene(new Scene2a());
-    }
-
-    private void openScene(Fragment fragment)
+    public void openScene(Fragment fragment)
     {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container_scene, fragment);

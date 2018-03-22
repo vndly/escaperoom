@@ -21,7 +21,7 @@ public class Scene1c extends BaseFragment<StateScene1>
         InteractiveObject back = objectLayout(R.layout.widget_button_back_left);
         back.position(38, 43);
         back.size(100, 100);
-        back.callback(this::openScene1a);
+        back.callback(() -> openScene(new Scene1a()));
         add(back);
 
         chestClose = objectDrawable(R.drawable.scene1c_chest_drawers_close);

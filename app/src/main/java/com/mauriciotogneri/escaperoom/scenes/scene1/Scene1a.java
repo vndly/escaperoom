@@ -3,6 +3,7 @@ package com.mauriciotogneri.escaperoom.scenes.scene1;
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.audio.Sound;
 import com.mauriciotogneri.escaperoom.scenes.BaseFragment;
+import com.mauriciotogneri.escaperoom.scenes.scene2.Scene2a;
 import com.mauriciotogneri.escaperoom.state.StateScene1;
 import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
 
@@ -20,7 +21,7 @@ public class Scene1a extends BaseFragment<StateScene1>
         pad = objectDrawable(R.drawable.scene1a_pad_close);
         pad.position(192, 475);
         pad.size(100, 100);
-        pad.callback(this::openScene1b);
+        pad.callback(() -> openScene(new Scene1b()));
         add(pad);
 
         InteractiveObject interrupter = objectDrawable(R.drawable.scene1a_interrupter);
@@ -32,13 +33,13 @@ public class Scene1a extends BaseFragment<StateScene1>
         chestDrawersClose = objectDrawable(R.drawable.scene1a_chest_drawers_close);
         chestDrawersClose.position(1440, 432);
         chestDrawersClose.size(500, 500);
-        chestDrawersClose.callback(this::openScene1c);
+        chestDrawersClose.callback(() -> openScene(new Scene1c()));
         add(chestDrawersClose);
 
         chestDrawersOpen = objectDrawable(R.drawable.scene1a_chest_drawers_open);
         chestDrawersOpen.position(1440, 432);
         chestDrawersOpen.size(500, 500);
-        chestDrawersOpen.callback(this::openScene1c);
+        chestDrawersOpen.callback(() -> openScene(new Scene1c()));
         add(chestDrawersOpen);
 
         code = objectDrawable(R.drawable.scene1a_code);
@@ -107,7 +108,7 @@ public class Scene1a extends BaseFragment<StateScene1>
     {
         if (stateScene.isDoorOpen())
         {
-            openScene2a();
+            openScene(new Scene2a());
         }
         else
         {

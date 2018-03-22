@@ -24,7 +24,7 @@ public class Scene1b extends BaseFragment<StateScene1>
         InteractiveObject back = objectLayout(R.layout.widget_button_back_left);
         back.position(38, 43);
         back.size(100, 100);
-        back.callback(this::openScene1a);
+        back.callback(() -> openScene(new Scene1a()));
         add(back);
 
         numbers.add(addButton(1, 595, 216, R.drawable.scene1b_pad_number1));
