@@ -57,6 +57,11 @@ public class InteractiveObject extends ImageView
         setBackgroundColor(ContextCompat.getColor(getContext(), resId));
     }
 
+    public void image(@DrawableRes int resId)
+    {
+        setImageResource(resId);
+    }
+
     public void tint(@ColorRes int resId)
     {
         ColorStateList colorStateList = ContextCompat.getColorStateList(getContext(), resId);
@@ -96,7 +101,7 @@ public class InteractiveObject extends ImageView
     public static InteractiveObject fromResource(Context context, @DrawableRes int resId)
     {
         InteractiveObject object = fromLayout(context, R.layout.widget_interactive_object);
-        object.setImageResource(resId);
+        object.image(resId);
 
         return object;
     }

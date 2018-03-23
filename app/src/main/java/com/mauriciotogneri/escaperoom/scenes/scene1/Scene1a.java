@@ -10,6 +10,7 @@ import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
 public class Scene1a extends BaseFragment<StateScene1>
 {
     private InteractiveObject dark;
+    private InteractiveObject door;
     private InteractiveObject code;
     private InteractiveObject pad;
     private InteractiveObject chestDrawersClose;
@@ -18,17 +19,22 @@ public class Scene1a extends BaseFragment<StateScene1>
     @Override
     protected void initialize(StateScene1 stateScene)
     {
+        InteractiveObject interrupter = objectDrawable(R.drawable.scene1a_interrupter);
+        interrupter.position(576, 432);
+        interrupter.size(200, 200);
+        interrupter.callback(this::toggleLight);
+        add(interrupter);
+
         pad = objectDrawable(R.drawable.scene1a_pad_close);
         pad.position(192, 475);
         pad.size(100, 100);
         pad.callback(() -> openScene(new Scene1b()));
         add(pad);
 
-        InteractiveObject interrupter = objectDrawable(R.drawable.scene1a_interrupter);
-        interrupter.position(576, 432);
-        interrupter.size(200, 200);
-        interrupter.callback(this::toggleLight);
-        add(interrupter);
+        door = objectDrawable(R.drawable.scene1a_door_close);
+        door.position(322, 270);
+        door.size(295, 530);
+        add(door);
 
         chestDrawersClose = objectDrawable(R.drawable.scene1a_chest_drawers_close);
         chestDrawersClose.position(1240, 432);
@@ -59,11 +65,11 @@ public class Scene1a extends BaseFragment<StateScene1>
     {
         if (stateScene.isPadOpen())
         {
-            pad.setImageResource(R.drawable.scene1a_pad_open);
+            pad.image(R.drawable.scene1a_pad_open);
         }
         else
         {
-            pad.setImageResource(R.drawable.scene1a_pad_close);
+            pad.image(R.drawable.scene1a_pad_close);
         }
 
         if (stateScene.isChestOpen())
@@ -84,6 +90,15 @@ public class Scene1a extends BaseFragment<StateScene1>
         else
         {
             background(R.drawable.scene1a_background_close);
+        }
+
+        if (stateScene.isDoorOpen())
+        {
+            door.image(R.drawable.scene1a_door_open);
+        }
+        else
+        {
+            door.image(R.drawable.scene1a_door_close);
         }
 
         if (stateScene.isLightOn())

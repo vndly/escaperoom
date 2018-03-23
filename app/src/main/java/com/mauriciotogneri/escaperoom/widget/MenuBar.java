@@ -14,13 +14,8 @@ import android.widget.RelativeLayout;
 import com.mauriciotogneri.escaperoom.R;
 import com.mauriciotogneri.escaperoom.state.BaseSceneState;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MenuBar extends LinearLayout
 {
-    private final List<ImageView> items = new ArrayList<>();
-
     public MenuBar(Context context)
     {
         super(context);
@@ -52,8 +47,6 @@ public class MenuBar extends LinearLayout
     {
         LinearLayout container = findViewById(R.id.items);
         container.removeAllViews();
-
-        items.clear();
 
         for (ImageView item : state.items())
         {
