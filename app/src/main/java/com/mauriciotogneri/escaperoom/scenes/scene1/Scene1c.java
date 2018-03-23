@@ -43,7 +43,7 @@ public class Scene1c extends BaseFragment<StateScene1>
         key.callback(this::getKey);
         add(key);
 
-        dark = objectLayout(R.layout.widget_interactive_object);
+        dark = objectLayout(R.layout.view_interactive_object);
         dark.color(R.color.scene1_dark);
         add(dark);
     }

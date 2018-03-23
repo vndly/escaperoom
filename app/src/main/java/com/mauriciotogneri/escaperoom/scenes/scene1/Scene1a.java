@@ -47,7 +47,7 @@ public class Scene1a extends BaseFragment<StateScene1>
         code.size(400, 200);
         add(code);
 
-        dark = objectLayout(R.layout.widget_interactive_object);
+        dark = objectLayout(R.layout.view_interactive_object);
         dark.color(R.color.scene1_dark);
         add(dark);
     }

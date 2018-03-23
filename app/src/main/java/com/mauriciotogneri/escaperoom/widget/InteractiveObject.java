@@ -100,7 +100,7 @@ public class InteractiveObject extends ImageView
 
     public static InteractiveObject fromResource(Context context, @DrawableRes int resId)
     {
-        InteractiveObject object = fromLayout(context, R.layout.widget_interactive_object);
+        InteractiveObject object = fromLayout(context, R.layout.view_interactive_object);
         object.image(resId);
 
         return object;
