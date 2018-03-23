@@ -67,6 +67,19 @@ public abstract class BaseFragment<T extends BaseSceneState> extends Fragment im
         view.setVisibility(View.GONE);
     }
 
+    protected void conditionalImage(InteractiveObject object, boolean condition, @DrawableRes int ifTrue, @DrawableRes int ifFalse)
+    {
+        if (condition)
+        {
+            object.image(ifTrue);
+        }
+        else
+        {
+            object.image(ifFalse);
+        }
+
+    }
+
     protected void playSound(String name)
     {
         EscapeRoom.audioManager().playAudio(name, false);

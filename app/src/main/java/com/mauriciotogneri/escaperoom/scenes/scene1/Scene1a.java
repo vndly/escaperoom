@@ -13,8 +13,7 @@ public class Scene1a extends BaseFragment<StateScene1>
     private InteractiveObject door;
     private InteractiveObject code;
     private InteractiveObject pad;
-    private InteractiveObject chestDrawersClose;
-    private InteractiveObject chestDrawersOpen;
+    private InteractiveObject drawer;
 
     @Override
     protected void initialize(StateScene1 stateScene)
@@ -34,19 +33,14 @@ public class Scene1a extends BaseFragment<StateScene1>
         door = objectDrawable(R.drawable.scene1a_door_close);
         door.position(322, 270);
         door.size(295, 530);
+        door.callback(this::openDoor);
         add(door);
 
-        chestDrawersClose = objectDrawable(R.drawable.scene1a_chest_drawers_close);
-        chestDrawersClose.position(1240, 432);
-        chestDrawersClose.size(500, 500);
-        chestDrawersClose.callback(() -> openScene(new Scene1c()));
-        add(chestDrawersClose);
-
-        chestDrawersOpen = objectDrawable(R.drawable.scene1a_chest_drawers_open);
-        chestDrawersOpen.position(1240, 432);
-        chestDrawersOpen.size(500, 500);
-        chestDrawersOpen.callback(() -> openScene(new Scene1c()));
-        add(chestDrawersOpen);
+        drawer = objectDrawable(R.drawable.scene1a_chest_drawers_close);
+        drawer.position(1240, 432);
+        drawer.size(500, 500);
+        drawer.callback(() -> openScene(new Scene1c()));
+        add(drawer);
 
         code = objectDrawable(R.drawable.scene1a_code);
         code.position(1008, 194);
@@ -56,13 +50,20 @@ public class Scene1a extends BaseFragment<StateScene1>
         dark = objectLayout(R.layout.widget_interactive_object);
         dark.color(R.color.scene1_dark);
         add(dark);
-
-        registerClick(320, 254, 602, 782, this::openDoor);
     }
 
     @Override
     protected void onUpdate(StateScene1 state)
     {
+        if (stateScene.isDoorOpen())
+        {
+            background(R.drawable.scene1a_background_open);
+        }
+        else
+        {
+            background(R.drawable.scene1a_background_close);
+        }
+
         if (stateScene.isPadOpen())
         {
             pad.image(R.drawable.scene1a_pad_open);
@@ -74,22 +75,11 @@ public class Scene1a extends BaseFragment<StateScene1>
 
         if (stateScene.isChestOpen())
         {
-            gone(chestDrawersClose);
-            visible(chestDrawersOpen);
+            drawer.image(R.drawable.scene1a_chest_drawers_open);
         }
         else
         {
-            visible(chestDrawersClose);
-            gone(chestDrawersOpen);
-        }
-
-        if (stateScene.isDoorOpen())
-        {
-            background(R.drawable.scene1a_background_open);
-        }
-        else
-        {
-            background(R.drawable.scene1a_background_close);
+            drawer.image(R.drawable.scene1a_chest_drawers_close);
         }
 
         if (stateScene.isDoorOpen())
