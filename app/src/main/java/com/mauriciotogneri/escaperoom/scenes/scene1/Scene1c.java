@@ -9,8 +9,8 @@ import com.mauriciotogneri.escaperoom.widget.InteractiveObject;
 public class Scene1c extends BaseFragment<StateScene1>
 {
     private InteractiveObject dark;
-    private InteractiveObject chestClose;
-    private InteractiveObject chestOpen;
+    private InteractiveObject drawerClose;
+    private InteractiveObject drawerOpen;
     private InteractiveObject key;
 
     @Override
@@ -25,17 +25,17 @@ public class Scene1c extends BaseFragment<StateScene1>
         back.callback(() -> openScene(new Scene1a()));
         add(back);
 
-        chestClose = objectDrawable(R.drawable.scene1c_chest_drawers_close);
-        chestClose.position(537, 302);
-        chestClose.size(800, 300);
-        chestClose.callback(this::openChest);
-        add(chestClose);
+        drawerClose = objectDrawable(R.drawable.scene1c_drawer_close);
+        drawerClose.position(537, 302);
+        drawerClose.size(800, 300);
+        drawerClose.callback(this::openDrawer);
+        add(drawerClose);
 
-        chestOpen = objectDrawable(R.drawable.scene1c_chest_drawers_open);
-        chestOpen.position(345, 259);
-        chestOpen.size(1000, 600);
-        chestOpen.callback(this::openChest);
-        add(chestOpen);
+        drawerOpen = objectDrawable(R.drawable.scene1c_drawer_open);
+        drawerOpen.position(345, 259);
+        drawerOpen.size(1000, 600);
+        drawerOpen.callback(this::openDrawer);
+        add(drawerOpen);
 
         key = objectDrawable(R.drawable.scene1c_key);
         key.position(768, 390);
@@ -60,18 +60,18 @@ public class Scene1c extends BaseFragment<StateScene1>
             visible(dark);
         }
 
-        if (stateScene.isChestOpen())
+        if (stateScene.isDrawerOpen())
         {
-            gone(chestClose);
-            visible(chestOpen);
+            gone(drawerClose);
+            visible(drawerOpen);
         }
         else
         {
-            visible(chestClose);
-            gone(chestOpen);
+            visible(drawerClose);
+            gone(drawerOpen);
         }
 
-        if (stateScene.isChestOpen() && !stateScene.hasKey())
+        if (stateScene.isDrawerOpen() && !stateScene.hasKey())
         {
             visible(key);
         }
@@ -81,12 +81,12 @@ public class Scene1c extends BaseFragment<StateScene1>
         }
     }
 
-    private void openChest()
+    private void openDrawer()
     {
-        if (!stateScene.isChestOpen())
+        if (!stateScene.isDrawerOpen())
         {
             playSound(Scene1.DRAWER);
-            stateScene.openChest();
+            stateScene.openDrawer();
             update();
         }
     }

@@ -36,7 +36,7 @@ public class Scene1a extends BaseFragment<StateScene1>
         door.callback(this::openDoor);
         add(door);
 
-        drawer = objectDrawable(R.drawable.scene1a_chest_drawers_close);
+        drawer = objectDrawable(R.drawable.scene1a_drawer_close);
         drawer.position(1240, 432);
         drawer.size(500, 500);
         drawer.callback(() -> openScene(new Scene1c()));
@@ -64,32 +64,9 @@ public class Scene1a extends BaseFragment<StateScene1>
             background(R.drawable.scene1a_background_close);
         }
 
-        if (stateScene.isPadOpen())
-        {
-            pad.image(R.drawable.scene1a_pad_open);
-        }
-        else
-        {
-            pad.image(R.drawable.scene1a_pad_close);
-        }
-
-        if (stateScene.isChestOpen())
-        {
-            drawer.image(R.drawable.scene1a_chest_drawers_open);
-        }
-        else
-        {
-            drawer.image(R.drawable.scene1a_chest_drawers_close);
-        }
-
-        if (stateScene.isDoorOpen())
-        {
-            door.image(R.drawable.scene1a_door_open);
-        }
-        else
-        {
-            door.image(R.drawable.scene1a_door_close);
-        }
+        conditionalImage(pad, stateScene.isPadOpen(), R.drawable.scene1a_pad_open, R.drawable.scene1a_pad_close);
+        conditionalImage(drawer, stateScene.isDrawerOpen(), R.drawable.scene1a_drawer_open, R.drawable.scene1a_drawer_close);
+        conditionalImage(door, stateScene.isDoorOpen(), R.drawable.scene1a_door_open, R.drawable.scene1a_door_close);
 
         if (stateScene.isLightOn())
         {
